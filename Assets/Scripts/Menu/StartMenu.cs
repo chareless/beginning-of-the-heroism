@@ -10,6 +10,7 @@ public class StartMenu : MonoBehaviour
     public GameObject CreditsCanvas;
     public GameObject PlayCanvas;
     public GameObject SelectCharacterCanvas;
+    public GameObject ButtonContinue;
     public Button button30fps;
     public Button button60fps;
     public Button button75fps;
@@ -38,14 +39,6 @@ public class StartMenu : MonoBehaviour
     {
         ClickSound.PlayOneShot(backClick);
     }
-
-    public void PlayButton()
-    {
-        StartMenuCanvas.SetActive(false);
-        PlayCanvas.SetActive(true);
-        PlayNextClick();
-    }
-
     public void NewGameButton()
     {
         PlayCanvas.SetActive(false);
