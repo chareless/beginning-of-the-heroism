@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StartMenu : MonoBehaviour
@@ -8,12 +9,15 @@ public class StartMenu : MonoBehaviour
     public GameObject StartMenuCanvas;
     public GameObject OptionsCanvas;
     public GameObject CreditsCanvas;
-    public GameObject PlayCanvas;
     public GameObject SelectCharacterCanvas;
     public GameObject ButtonContinue;
     public Button button30fps;
     public Button button60fps;
     public Button button75fps;
+    public Button SelectRogue;
+    public Button SelectWizard;
+    public Button SelectArcher;
+    public Button SelectKnight;
     public Text gameVersion;
     public Text volumeText;
     public Text fpsText;
@@ -41,9 +45,49 @@ public class StartMenu : MonoBehaviour
     }
     public void NewGameButton()
     {
-        PlayCanvas.SetActive(false);
         SelectCharacterCanvas.SetActive(true);
+        StartMenuCanvas.SetActive(false);
         PlayNextClick();
+    }
+
+    public void RogueButton()
+    {
+        //Player.class="Rogue";
+        SelectWizard.interactable = false;
+        SelectArcher.interactable = false;
+        SelectKnight.interactable = false;
+        PlayNextClick();
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void WizardButton()
+    {
+        //Player.class="Wizard";
+        SelectRogue.interactable = false;
+        SelectArcher.interactable = false;
+        SelectKnight.interactable = false;
+        PlayNextClick();
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void ArcherButton()
+    {
+        //Player.class="Archer";
+        SelectRogue.interactable = false;
+        SelectWizard.interactable = false;
+        SelectKnight.interactable = false;
+        PlayNextClick();
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void KnightButton()
+    {
+        //Player.class="Knight";
+        SelectRogue.interactable = false;
+        SelectWizard.interactable = false;
+        SelectArcher.interactable = false;
+        PlayNextClick();
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void ContinueButton()
@@ -81,7 +125,6 @@ public class StartMenu : MonoBehaviour
         StartMenuCanvas.SetActive(true);
         OptionsCanvas.SetActive(false);
         CreditsCanvas.SetActive(false);
-        PlayCanvas.SetActive(false);
         SelectCharacterCanvas.SetActive(false);
         PlayBackClick();
     }
@@ -164,6 +207,11 @@ public class StartMenu : MonoBehaviour
             button75fps.interactable = false;
         }
     }
+
+    public void GameEndControl()
+    {
+        SelectKnight.interactable = false;
+    }
     public void LoadValues()
     {
         //LoadData.loadData();
@@ -173,6 +221,8 @@ public class StartMenu : MonoBehaviour
         FPSControl();
 
         ContinueControl();
+
+        GameEndControl();
     }
 
 
