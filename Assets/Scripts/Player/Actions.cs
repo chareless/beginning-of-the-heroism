@@ -35,7 +35,11 @@ public class Actions : MonoBehaviour
         }
         if(Input.GetKey("h"))
         {
-
+            Hit();
+        }
+        if(Input.GetKey("j"))
+        {
+            UsePot();
         }
         transform.position = pos;
     }
