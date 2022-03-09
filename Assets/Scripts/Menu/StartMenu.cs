@@ -27,6 +27,7 @@ public class StartMenu : MonoBehaviour
     public AudioClip backClick;
     public static int maxFPS = 60;
     public static float volumeValue;
+    public static bool isContinue;
     public void Start()
     {
         LoadValues();
@@ -48,11 +49,12 @@ public class StartMenu : MonoBehaviour
         SelectCharacterCanvas.SetActive(true);
         StartMenuCanvas.SetActive(false);
         PlayNextClick();
+        isContinue = false;
     }
 
     public void RogueButton()
     {
-        //Player.class="Rogue";
+        Status.playerClass = "Rogue";
         SelectWizard.interactable = false;
         SelectArcher.interactable = false;
         SelectKnight.interactable = false;
@@ -62,7 +64,7 @@ public class StartMenu : MonoBehaviour
 
     public void WizardButton()
     {
-        //Player.class="Wizard";
+        Status.playerClass = "Wizard";
         SelectRogue.interactable = false;
         SelectArcher.interactable = false;
         SelectKnight.interactable = false;
@@ -72,7 +74,7 @@ public class StartMenu : MonoBehaviour
 
     public void ArcherButton()
     {
-        //Player.class="Archer";
+        Status.playerClass = "Archer";
         SelectRogue.interactable = false;
         SelectWizard.interactable = false;
         SelectKnight.interactable = false;
@@ -82,7 +84,7 @@ public class StartMenu : MonoBehaviour
 
     public void KnightButton()
     {
-        //Player.class="Knight";
+        Status.playerClass = "Knight";
         SelectRogue.interactable = false;
         SelectWizard.interactable = false;
         SelectArcher.interactable = false;
@@ -92,7 +94,9 @@ public class StartMenu : MonoBehaviour
 
     public void ContinueButton()
     {
+        isContinue = true;
         PlayNextClick();
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void CreditsButton()
