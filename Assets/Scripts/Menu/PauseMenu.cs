@@ -1,40 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GamePaused = false;
-    public GameObject pauseMenuUI;
-    public GameObject playerUI;
-
-    public void Pause()
+    // Start is called before the first frame update
+    void Start()
     {
-        if (GamePaused == false)
-        {
-            playerUI.SetActive(false);
-            pauseMenuUI.SetActive(true);
-            Time.timeScale = 0f;
-            GamePaused = true;
-        }
-        else
-        {
-            pauseMenuUI.SetActive(false);
-            playerUI.SetActive(true);
-            Time.timeScale = 1f;
-            GamePaused = false;
-        }
+        
     }
 
-    public void MenuButton()
+    // Update is called once per frame
+    void Update()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("StartMenu");
-    }
-
-    public void QuitButton()
-    {
-        Application.Quit();
+        
     }
 }
