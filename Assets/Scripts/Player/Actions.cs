@@ -8,7 +8,7 @@ public class Actions : MonoBehaviour
     public static float jump;
     void Start()
     {
-        
+
     }
     void ButtonControl()
     {
@@ -18,24 +18,28 @@ public class Actions : MonoBehaviour
     {
         Vector3 pos = transform.position;
 
-        if(Input.GetKey("w"))
+        if (Input.GetKey("w"))
         {
             jump = 6f;
             pos.y += jump * Time.deltaTime;
         }
-        if(Input.GetKey("d"))
+        if (Input.GetKey("d"))
         {
             speed = 5f;
             pos.x += speed * Time.deltaTime;
         }
-        if(Input.GetKey("a"))
+        if (Input.GetKey("a"))
         {
             speed = 5f;
             pos.x -= speed * Time.deltaTime;
         }
-        if(Input.GetKey("h"))
+        if (Input.GetKey("h"))
         {
-
+            Hit();
+        }
+        if (Input.GetKey("j"))
+        {
+            UsePot();
         }
         transform.position = pos;
     }
@@ -68,6 +72,15 @@ public class Actions : MonoBehaviour
     public void Hit()
     {
 
+    }
+
+    public void UsePot()
+    {
+        if (Status.potCount > 0)
+        {
+            Status.potCount--;
+            Status.health = Status.maxHealth;
+        }
     }
     void Update()
     {
