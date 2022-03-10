@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Actions : MonoBehaviour
 {
+    public Animator animator;
     public static float speed;
     public static float jump;
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
     void ButtonControl()
     {
@@ -20,22 +21,40 @@ public class Actions : MonoBehaviour
 
         if(Input.GetKey("w"))
         {
+            animator.SetFloat("jumpSpeed",10);
+            animator.SetFloat("attackTime",0);
+            animator.SetFloat("Vertical",0);
+            animator.SetFloat("Horizontal",0);
             jump = 6f;
             pos.y += jump * Time.deltaTime;
         }
         if(Input.GetKey("d"))
         {
+            animator.SetFloat("jumpSpeed",0);
+            animator.SetFloat("walkSpeed",10);
+            animator.SetFloat("attackTime",0);
+            animator.SetFloat("Vertical",0);
+            animator.SetFloat("Horizontal",10);
             speed = 5f;
             pos.x += speed * Time.deltaTime;
         }
         if(Input.GetKey("a"))
         {
+            animator.SetFloat("jumpSpeed",0);
+            animator.SetFloat("walkSpeed",10);
+            animator.SetFloat("attackTime",0);
+            animator.SetFloat("Vertical",10);
+            animator.SetFloat("Horizontal",0);
             speed = 5f;
             pos.x -= speed * Time.deltaTime;
         }
         if(Input.GetKey("h"))
         {
-
+            animator.SetFloat("jumpSpeed",0);
+            animator.SetFloat("walkSpeed",0);
+            animator.SetFloat("attackTime",10);
+            animator.SetFloat("Vertical",0);
+            animator.SetFloat("Horizontal",0);
         }
         transform.position = pos;
     }
