@@ -23,8 +23,8 @@ public class Actions : MonoBehaviour
         {
             animator.SetFloat("jumpSpeed",10);
             animator.SetFloat("attackTime",0);
-            animator.SetFloat("Vertical",0);
-            animator.SetFloat("Horizontal",0);
+            animator.SetFloat("Sag",0);
+            animator.SetFloat("Sol",0);
             jump = 6f;
             pos.y += jump * Time.deltaTime;
         }
@@ -33,8 +33,9 @@ public class Actions : MonoBehaviour
             animator.SetFloat("jumpSpeed",0);
             animator.SetFloat("walkSpeed",10);
             animator.SetFloat("attackTime",0);
-            animator.SetFloat("Vertical",0);
-            animator.SetFloat("Horizontal",10);
+            animator.SetFloat("Sag",10);
+            animator.SetFloat("Sol",0);
+            
             speed = 5f;
             pos.x += speed * Time.deltaTime;
         }
@@ -43,8 +44,9 @@ public class Actions : MonoBehaviour
             animator.SetFloat("jumpSpeed",0);
             animator.SetFloat("walkSpeed",10);
             animator.SetFloat("attackTime",0);
-            animator.SetFloat("Vertical",10);
-            animator.SetFloat("Horizontal",0);
+            animator.SetFloat("Sag",0);
+            animator.SetFloat("Sol",10);
+          
             speed = 5f;
             pos.x -= speed * Time.deltaTime;
         }
@@ -53,8 +55,8 @@ public class Actions : MonoBehaviour
             animator.SetFloat("jumpSpeed",0);
             animator.SetFloat("walkSpeed",0);
             animator.SetFloat("attackTime",10);
-            animator.SetFloat("Vertical",0);
-            animator.SetFloat("Horizontal",0);
+            animator.SetFloat("Sag",0);
+            animator.SetFloat("Sol",0);
         }
         transform.position = pos;
     }
