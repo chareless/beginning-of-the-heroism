@@ -67,7 +67,8 @@ public class Actions : MonoBehaviour
             animator.SetFloat("left",0f);
             animator.SetFloat("right",10f);
             animator.SetFloat("attack",0f);
-        speed = 5f;
+            animator.SetFloat("state",0f);
+            speed = 5f;
     }
 
     public void LeftMovement()
@@ -76,13 +77,18 @@ public class Actions : MonoBehaviour
             animator.SetFloat("left",10f);
             animator.SetFloat("right",0f);
             animator.SetFloat("attack",0f);
+            animator.SetFloat("state",0f);
             speed = -5f;
     }
 
     public void StopMovement()
     {
-        animator.SetFloat("state",10f);
+        
         speed = 0;
+        animator.SetFloat("state",10f);
+        animator.SetFloat("jump",0f);
+        animator.SetFloat("left",0f);
+        animator.SetFloat("right",0f);
     }
 
     public void Jump()
@@ -91,21 +97,26 @@ public class Actions : MonoBehaviour
             animator.SetFloat("left",0f);
             animator.SetFloat("right",0f);
             animator.SetFloat("attack",0f);
-        jump = 6f;
+            animator.SetFloat("state",0f);
+            jump = 6f;
     }
 
     public void StopJump()
     {
         jump = 0f;
         animator.SetFloat("state",10f);
+        animator.SetFloat("jump",0f);
+        animator.SetFloat("left",0f);
+        animator.SetFloat("right",0f);
     }
 
     public void Hit()
     {
-        animator.SetFloat("jump",0f);
+            animator.SetFloat("jump",0f);
             animator.SetFloat("left",0f);
             animator.SetFloat("right",0f);
             animator.SetFloat("attack",10f);
+            animator.SetFloat("state",0f);
     }
 
     public void UsePot()
