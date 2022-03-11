@@ -15,7 +15,7 @@ public class Actions : MonoBehaviour
     {
         transform.position += new Vector3(speed, jump, 0) * Time.deltaTime;
     }
-    void KeyboardControl()
+    /*void KeyboardControl()
     {
         Vector3 pos = transform.position;
 
@@ -60,6 +60,7 @@ public class Actions : MonoBehaviour
         }
         transform.position = pos;
     }
+*/
     public void RightMovement()
     {
             animator.SetFloat("jump",0f);
