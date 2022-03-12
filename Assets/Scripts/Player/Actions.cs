@@ -8,10 +8,14 @@ public class Actions : MonoBehaviour
     
     public static float speed;
     public GameObject Rogue;
+    public GameObject Archer;
+    public GameObject Wizard;
+    public GameObject Knight;
     public static float jump;
+    public static int rotate;
     void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        
     }
     void ButtonControl()
     {
@@ -21,14 +25,15 @@ public class Actions : MonoBehaviour
     {
         Vector3 pos = transform.position;
 
-        if (Input.GetKey("w"))
+        if (Input.GetKeyDown("w"))
         {
             animator.SetFloat("jump",10f);
             animator.SetFloat("left",0f);
             animator.SetFloat("right",0f);
             animator.SetFloat("attack",0f);
             jump = 6f;
-            pos.y += jump * Time.deltaTime;
+            Rigidbody2D rgbr = GetComponent<Rigidbody2D>();
+            rgbr.AddForce(transform.up * jump, ForceMode2D.Impulse);
         }
         if (Input.GetKey("d"))
         {
@@ -62,30 +67,55 @@ public class Actions : MonoBehaviour
         }
         transform.position = pos;
     }
+
+    void GetAnimator()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+    void RotatePlayer()
+    {
+        if (Status.playerClass == "Rogue")
+        {
+            Rogue.transform.rotation = Quaternion.Euler(0, rotate, 0);
+        }
+        else if(Status.playerClass == "Wizard")
+        {
+            Wizard.transform.rotation = Quaternion.Euler(0, rotate, 0);
+        }
+        else if(Status.playerClass == "Archer")
+        {
+            Archer.transform.rotation = Quaternion.Euler(0, rotate, 0);
+        }
+        else if(Status.playerClass == "Knight")
+        {
+            Knight.transform.rotation = Quaternion.Euler(0, rotate, 0);
+        }
+    }
     public void RightMovement()
     {
-            animator.SetFloat("jump",0f);
-            animator.SetFloat("left",0f);
-            animator.SetFloat("right",10f);
-            animator.SetFloat("attack",0f);
-            animator.SetFloat("state",0f);
-            Rogue.transform.rotation = Quaternion.Euler(0,0,0);  
-            speed = 5f;
+        animator.SetFloat("jump",0f);
+        animator.SetFloat("left",0f);
+        animator.SetFloat("right",10f);
+        animator.SetFloat("attack",0f);
+        animator.SetFloat("state",0f);
+        rotate = 0;
+        RotatePlayer();
+        speed = 5f;
     }
 
     public void LeftMovement()
     {
-            animator.SetFloat("jump",0f);
-            animator.SetFloat("right",10f);
-            animator.SetFloat("attack",0f);
-            animator.SetFloat("state",0f);
-            Rogue.transform.rotation = Quaternion.Euler(0,180,0);   
-            speed = -5f;
+        animator.SetFloat("jump",0f);
+        animator.SetFloat("right",10f);
+        animator.SetFloat("attack",0f);
+        animator.SetFloat("state",0f);
+        rotate = 180;
+        RotatePlayer();
+        speed = -5f;
     }
 
     public void StopMovement()
     {
-        
         speed = 0;
         animator.SetFloat("state",10f);
         animator.SetFloat("jump",0f);
@@ -95,12 +125,14 @@ public class Actions : MonoBehaviour
 
     public void Jump()
     {
-            animator.SetFloat("jump",10f);
-            animator.SetFloat("left",0f);
-            animator.SetFloat("right",0f);
-            animator.SetFloat("attack",0f);
-            animator.SetFloat("state",0f);
-            jump = 6f;
+        animator.SetFloat("jump",10f);
+        animator.SetFloat("left",0f);
+        animator.SetFloat("right",0f);
+        animator.SetFloat("attack",0f);
+        animator.SetFloat("state",0f);
+        jump = 3f;
+        Rigidbody2D rgbr = GetComponent<Rigidbody2D>();
+        rgbr.AddForce(transform.up * jump, ForceMode2D.Impulse);
     }
 
     public void StopJump()
@@ -114,9 +146,9 @@ public class Actions : MonoBehaviour
 
     public void Hit()
     {
-            animator.SetFloat("attack",10f);
-            animator.SetFloat("state",0f);
-            animator.Play("Rogue-Attack");
+        animator.SetFloat("attack",10f);
+        animator.SetFloat("state",0f);
+        animator.Play("Rogue-Attack");
     }
 
     public void UsePot()
@@ -129,6 +161,7 @@ public class Actions : MonoBehaviour
     }
     void Update()
     {
+        GetAnimator();
         KeyboardControl();
         //ButtonControl();
     }

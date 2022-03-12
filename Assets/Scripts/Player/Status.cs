@@ -20,6 +20,7 @@ public class Status : MonoBehaviour
     public Text attackSpeedText;
     public Text classText;
     public Text mapText;
+    public Image healthBar;
     public static string playerClass;
     public static string currentMap;
     public static int maxHealth;
@@ -63,10 +64,10 @@ public class Status : MonoBehaviour
         }
         else
         {
-            playerClass = "Rogue";
+            playerClass = "Wizard";
             Destroy(Knight);
             Destroy(Archer);
-            Destroy(Wizard);
+            Destroy(Rogue);
         }
     }
 
@@ -132,10 +133,42 @@ public class Status : MonoBehaviour
         potCount++;
     }
 
+    void HealthControl()
+    {
+        if(health<=0)
+        {
+            health = 0;
+        }
+        else if(health>=maxHealth)
+        {
+            health=maxHealth;
+        }
+        else
+        {
+            healthBar.fillAmount = (float)health / (float)maxHealth;
+        }
+    }
+
 
     void Update()
     {
         LabelUpdate();
         PotCountControl();
+        HealthControl();
     }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag=="Poison")
+        {
+            health = 0;
+        }
+        if(collision.gameObject.tag=="Pot")
+        {
+            TakePot();
+            Destroy(collision.gameObject);
+        }
+    }
+
 }
