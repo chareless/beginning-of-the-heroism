@@ -5,7 +5,9 @@ using UnityEngine;
 public class Actions : MonoBehaviour
 {
     public Animator animator;
+    
     public static float speed;
+    public GameObject Rogue;
     public static float jump;
     void Start()
     {
@@ -67,16 +69,17 @@ public class Actions : MonoBehaviour
             animator.SetFloat("right",10f);
             animator.SetFloat("attack",0f);
             animator.SetFloat("state",0f);
+            Rogue.transform.rotation = Quaternion.Euler(0,0,0);  
             speed = 5f;
     }
 
     public void LeftMovement()
     {
             animator.SetFloat("jump",0f);
-            animator.SetFloat("left",10f);
-            animator.SetFloat("right",0f);
+            animator.SetFloat("right",10f);
             animator.SetFloat("attack",0f);
             animator.SetFloat("state",0f);
+            Rogue.transform.rotation = Quaternion.Euler(0,180,0);   
             speed = -5f;
     }
 
@@ -111,11 +114,9 @@ public class Actions : MonoBehaviour
 
     public void Hit()
     {
-            animator.SetFloat("jump",0f);
-            animator.SetFloat("left",0f);
-            animator.SetFloat("right",0f);
             animator.SetFloat("attack",10f);
             animator.SetFloat("state",0f);
+            animator.Play("Rogue-Attack");
     }
 
     public void UsePot()
@@ -128,7 +129,7 @@ public class Actions : MonoBehaviour
     }
     void Update()
     {
-        //KeyboardControl();
-        ButtonControl();
+        KeyboardControl();
+        //ButtonControl();
     }
 }
