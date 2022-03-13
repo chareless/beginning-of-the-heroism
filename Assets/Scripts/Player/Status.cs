@@ -85,7 +85,7 @@ public class Status : MonoBehaviour
             damage = 5;
             attackSpeed = 1.5f;
             potCount = 0;
-            currentMap = "Forest";
+            currentMap = "IceCave";
         }
     }
 
