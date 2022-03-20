@@ -11,8 +11,15 @@ public class Actions : MonoBehaviour
     public GameObject Archer;
     public GameObject Wizard;
     public GameObject Knight;
+    public GameObject sword;
+    public GameObject shooter;
+    public GameObject arrow;
+    public GameObject magic;
     public static float jump;
     public static int rotate;
+    public float shootTimer;
+    public float delay = 0.5f;
+    public static float bulletForce;
     void Start()
     {
         
@@ -101,6 +108,23 @@ public class Actions : MonoBehaviour
         rotate = 0;
         RotatePlayer();
         speed = 5f;
+        bulletForce = 20f;
+        if(Status.playerClass=="Rogue")
+        {
+            sword.transform.position = Rogue.transform.position + new Vector3(0.85f, -0.85f, 0);
+        }
+        if (Status.playerClass == "Knight")
+        {
+            sword.transform.position = Knight.transform.position + new Vector3(0.85f, -0.85f, 0);
+        }
+        if (Status.playerClass=="Wizard")
+        {
+            shooter.transform.position = Wizard.transform.position + new Vector3(0.85f, -0.75f, 0);
+        }
+        if (Status.playerClass == "Archer")
+        {
+            shooter.transform.position = Archer.transform.position + new Vector3(0.85f, -0.75f, 0);
+        }
     }
 
     public void LeftMovement()
@@ -112,6 +136,23 @@ public class Actions : MonoBehaviour
         rotate = 180;
         RotatePlayer();
         speed = -5f;
+        bulletForce = -20f;
+        if(Status.playerClass=="Rogue")
+        {
+            sword.transform.position = Rogue.transform.position + new Vector3(-0.95f, -0.85f, 0);
+        }
+        if (Status.playerClass == "Knight")
+        {
+            sword.transform.position = Knight.transform.position + new Vector3(-0.95f, -0.85f, 0);
+        }
+        if (Status.playerClass == "Wizard")
+        {
+            shooter.transform.position = Wizard.transform.position + new Vector3(-0.95f, -0.75f, 0);
+        }
+        if (Status.playerClass == "Archer")
+        {
+            shooter.transform.position = Archer.transform.position + new Vector3(-0.95f, -0.75f, 0);
+        }
     }
 
     public void StopMovement()
@@ -143,13 +184,45 @@ public class Actions : MonoBehaviour
         animator.SetFloat("left",0f);
         animator.SetFloat("right",0f);
     }
-
+    
     public void Hit()
     {
         animator.SetFloat("attack",10f);
         animator.SetFloat("state",0f);
         animator.Play("Rogue-Attack");
+        if(Status.playerClass=="Rogue" || Status.playerClass=="Knight")
+        {
+            if(shootTimer<=0)
+            {
+                sword.SetActive(true);
+                delay = 0.5f;
+            }
+            
+        }
+        if(Status.playerClass=="Archer")
+        {
+            if (shootTimer <= 0)
+            {
+                GameObject bulletr = Instantiate(arrow, shooter.transform.position, shooter.transform.rotation);
+                Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
+                rgbr.AddForce(shooter.transform.right * bulletForce, ForceMode2D.Impulse);
+                Destroy(bulletr, 0.2f);
+                shootTimer = Status.attackSpeed;
+            }
+        }
+        if (Status.playerClass == "Wizard")
+        {
+            if (shootTimer <= 0)
+            {
+                GameObject bulletr = Instantiate(magic, shooter.transform.position, shooter.transform.rotation);
+                Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
+                rgbr.AddForce(shooter.transform.right * bulletForce, ForceMode2D.Impulse);
+                Destroy(bulletr, 0.2f);
+                shootTimer = Status.attackSpeed;
+            }
+        }
     }
+
 
     public void UsePot()
     {
@@ -162,7 +235,27 @@ public class Actions : MonoBehaviour
     void Update()
     {
         GetAnimator();
-        KeyboardControl();
-        //ButtonControl();
+        //KeyboardControl();
+        ButtonControl();
+        shootTimer -= Time.deltaTime;
+        if (Status.playerClass=="Rogue" || Status.playerClass=="Knight")
+        {
+            if(sword.activeInHierarchy==true)
+            {
+                delay -= Time.deltaTime;
+                if (delay <= 0)
+                {
+                    sword.SetActive(false);
+                    shootTimer = Status.attackSpeed;
+                }
+            }
+            
+        }
+        if(Status.playerClass=="Wizard"||Status.playerClass=="Archer")
+        {
+            shootTimer-=Time.deltaTime;
+        }
+
+        
     }
 }

@@ -64,10 +64,10 @@ public class Status : MonoBehaviour
         }
         else
         {
-            playerClass = "Wizard";
+            playerClass = "Archer";
             Destroy(Knight);
-            Destroy(Archer);
             Destroy(Rogue);
+            Destroy(Wizard);
         }
     }
 
@@ -85,7 +85,7 @@ public class Status : MonoBehaviour
             damage = 5;
             attackSpeed = 1.5f;
             potCount = 0;
-            currentMap = "IceCave";
+            currentMap = "Forest";
         }
     }
 
@@ -94,14 +94,20 @@ public class Status : MonoBehaviour
         if (currentMap == "Forest")
         {
             map1.SetActive(true);
+            map2.SetActive(false);
+            map3.SetActive(false);
         }
         else if (currentMap == "IceCave")
         {
             map2.SetActive(true);
+            map1.SetActive(false);
+            map3.SetActive(false);
         }
         else if (currentMap == "Infernum")
         {
             map3.SetActive(true);
+            map1.SetActive(false);
+            map2.SetActive(false);
         }
     }
 
