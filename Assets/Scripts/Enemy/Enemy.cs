@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float sayac = 2f;
     public int health;
     public string enemyType;
+    public GameObject pot;
     void Start()
     {
         CreateEnemy();
@@ -42,6 +43,11 @@ public class Enemy : MonoBehaviour
             enemyType = "Log";
             health = 30;
         }
+        else if(gameObject.tag=="ForestBoss")
+        {
+            enemyType = "ForestBoss";
+            health = 100;
+        }
     }
 
     void GetDamage(int damage)
@@ -51,12 +57,18 @@ public class Enemy : MonoBehaviour
 
     void HealthControl()
     {
-        if(health<=0)
+        if (gameObject.tag == "ForestBoss" && health <= 0)
+        {
+            pot.SetActive(true);
+            Rigidbody2D rgbr = pot.GetComponent<Rigidbody2D>();
+            rgbr.AddForce(transform.up * 3f, ForceMode2D.Impulse);
+            Destroy(gameObject);
+        }
+        else if (health<=0)
         {
             Destroy(gameObject);
         }
     }
-
     void Update()
     {
         HealthControl();

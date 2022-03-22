@@ -79,10 +79,18 @@ public class Status : MonoBehaviour
         }
         else
         {
-            maxHealth = 10;
+            maxHealth = 5;
             maxPots = 3;
             health = maxHealth;
-            damage = 5;
+            if(playerClass=="Rogue" || playerClass=="Knight")
+            {
+                damage = 4;
+            }
+            else if(playerClass=="Archer"|| playerClass=="Wizard")
+            {
+                damage = 3;
+            }
+            
             attackSpeed = 1.5f;
             potCount = 0;
             currentMap = "Forest";
