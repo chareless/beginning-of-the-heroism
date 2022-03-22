@@ -38,6 +38,7 @@ public class Actions : MonoBehaviour
             animator.SetFloat("left",0f);
             animator.SetFloat("right",0f);
             animator.SetFloat("attack",0f);
+            animator.SetFloat("state",0f);
             jump = 6f;
             Rigidbody2D rgbr = GetComponent<Rigidbody2D>();
             rgbr.AddForce(transform.up * jump, ForceMode2D.Impulse);
@@ -48,15 +49,19 @@ public class Actions : MonoBehaviour
             animator.SetFloat("left",0f);
             animator.SetFloat("right",10f);
             animator.SetFloat("attack",0f);
+            rotate = 0;
+            RotatePlayer();
             speed = 5f;
             pos.x += speed * Time.deltaTime;
         }
         if (Input.GetKey("a"))
         {
-            animator.SetFloat("jump",0f);
-            animator.SetFloat("left",10f);
-            animator.SetFloat("right",0f);
-            animator.SetFloat("attack",0f);
+                animator.SetFloat("jump",0f);
+                 animator.SetFloat("right",10f);
+                animator.SetFloat("attack",0f);
+                animator.SetFloat("state",0f);
+                rotate = 180;
+               RotatePlayer();
             speed = 5f;
             pos.x -= speed * Time.deltaTime;
         }
@@ -187,9 +192,10 @@ public class Actions : MonoBehaviour
     
     public void Hit()
     {
-        animator.SetFloat("attack",10f);
         animator.SetFloat("state",0f);
-        animator.Play("Rogue-Attack");
+        animator.SetFloat("attack",10f);
+        
+        //animator.Play("Rogue-Attack");
         if(Status.playerClass=="Rogue" || Status.playerClass=="Knight")
         {
             if(shootTimer<=0)
@@ -235,8 +241,8 @@ public class Actions : MonoBehaviour
     void Update()
     {
         GetAnimator();
-        //KeyboardControl();
-        ButtonControl();
+        KeyboardControl();
+        //ButtonControl();
         shootTimer -= Time.deltaTime;
         if (Status.playerClass=="Rogue" || Status.playerClass=="Knight")
         {

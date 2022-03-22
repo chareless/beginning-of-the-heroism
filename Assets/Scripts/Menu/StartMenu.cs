@@ -28,6 +28,8 @@ public class StartMenu : MonoBehaviour
     public static int maxFPS = 60;
     public static float volumeValue;
     public static bool isContinue;
+    public AudioSource anaMenu;
+
     public void Start()
     {
         LoadValues();
@@ -50,6 +52,7 @@ public class StartMenu : MonoBehaviour
         StartMenuCanvas.SetActive(false);
         PlayNextClick();
         isContinue = false;
+        anaMenu.volume = 0;
     }
 
     public void RogueButton()
@@ -131,6 +134,7 @@ public class StartMenu : MonoBehaviour
         CreditsCanvas.SetActive(false);
         SelectCharacterCanvas.SetActive(false);
         PlayBackClick();
+        anaMenu.volume = 1;
     }
 
     public void QuitButton()
