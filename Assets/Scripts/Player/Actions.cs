@@ -6,7 +6,6 @@ public class Actions : MonoBehaviour
 {
     public Animator animator;
     
-    public static float speed;
     public GameObject Rogue;
     public GameObject Archer;
     public GameObject Wizard;
@@ -15,23 +14,27 @@ public class Actions : MonoBehaviour
     public GameObject shooter;
     public GameObject arrow;
     public GameObject magic;
-    public static float jump;
+    public static float jump=7f;
     public static int rotate;
     public float shootTimer;
     public float delay = 0.5f;
     public static float bulletForce;
+    Rigidbody2D rigidbody;
+    public static float speed = 800f;
+    public static float speedKey = 5f;
+    public static float yatay;
+    Vector3 velocity;
     void Start()
     {
-        
+        rigidbody = GetComponent<Rigidbody2D>();
     }
+
     void ButtonControl()
     {
-        transform.position += new Vector3(speed, jump, 0) * Time.deltaTime;
+        rigidbody.velocity = new Vector2(yatay * speed * Time.deltaTime, rigidbody.velocity.y);
     }
     void KeyboardControl()
     {
-        Vector3 pos = transform.position;
-
         if (Input.GetKeyDown("w"))
         {
             animator.SetFloat("jump",10f);
@@ -39,32 +42,16 @@ public class Actions : MonoBehaviour
             animator.SetFloat("right",0f);
             animator.SetFloat("attack",0f);
             animator.SetFloat("state",0f);
-            jump = 6f;
-            Rigidbody2D rgbr = GetComponent<Rigidbody2D>();
-            rgbr.AddForce(transform.up * jump, ForceMode2D.Impulse);
+            if(Mathf.Approximately(rigidbody.velocity.y,0))
+            {
+                rigidbody.AddForce(transform.up * jump, ForceMode2D.Impulse);
+            }
+            
         }
-        if (Input.GetKey("d"))
-        {
-            animator.SetFloat("jump",0f);
-            animator.SetFloat("left",0f);
-            animator.SetFloat("right",10f);
-            animator.SetFloat("attack",0f);
-            rotate = 0;
-            RotatePlayer();
-            speed = 5f;
-            pos.x += speed * Time.deltaTime;
-        }
-        if (Input.GetKey("a"))
-        {
-                animator.SetFloat("jump",0f);
-                 animator.SetFloat("right",10f);
-                animator.SetFloat("attack",0f);
-                animator.SetFloat("state",0f);
-                rotate = 180;
-               RotatePlayer();
-            speed = 5f;
-            pos.x -= speed * Time.deltaTime;
-        }
+
+        velocity = new Vector3(Input.GetAxis("Horizontal"), 0f);
+        transform.position += velocity * speed * Time.deltaTime;
+
         if (Input.GetKey("h"))
         {
             animator.SetFloat("jump",0f);
@@ -77,7 +64,6 @@ public class Actions : MonoBehaviour
         {
             UsePot();
         }
-        transform.position = pos;
     }
 
     void GetAnimator()
@@ -112,7 +98,8 @@ public class Actions : MonoBehaviour
         animator.SetFloat("state",0f);
         rotate = 0;
         RotatePlayer();
-        speed = 5f;
+        yatay = 1;
+        
         bulletForce = 20f;
         if(Status.playerClass=="Rogue")
         {
@@ -140,7 +127,7 @@ public class Actions : MonoBehaviour
         animator.SetFloat("state",0f);
         rotate = 180;
         RotatePlayer();
-        speed = -5f;
+        yatay = -1;
         bulletForce = -20f;
         if(Status.playerClass=="Rogue")
         {
@@ -162,7 +149,7 @@ public class Actions : MonoBehaviour
 
     public void StopMovement()
     {
-        speed = 0;
+        yatay = 0;
         animator.SetFloat("state",10f);
         animator.SetFloat("jump",0f);
         animator.SetFloat("left",0f);
@@ -171,35 +158,20 @@ public class Actions : MonoBehaviour
 
     public void Jump()
     {
-        animator.SetFloat("jump",10f);
-        animator.SetFloat("left",0f);
-        animator.SetFloat("right",0f);
-        animator.SetFloat("attack",0f);
-        animator.SetFloat("state",0f);
-        jump = 3f;
-        Rigidbody2D rgbr = GetComponent<Rigidbody2D>();
-        rgbr.AddForce(transform.up * jump, ForceMode2D.Impulse);
+        if(Mathf.Approximately(rigidbody.velocity.y,0))
+        {
+            rigidbody.AddForce(transform.up * jump, ForceMode2D.Impulse);
+        }
+        
     }
-
-    public void StopJump()
-    {
-        jump = 0f;
-        animator.SetFloat("state",10f);
-        animator.SetFloat("jump",0f);
-        animator.SetFloat("left",0f);
-        animator.SetFloat("right",0f);
-    }
-    
     public void Hit()
     {
-        animator.SetFloat("state",0f);
-        animator.SetFloat("attack",10f);
-        
-        //animator.Play("Rogue-Attack");
         if(Status.playerClass=="Rogue" || Status.playerClass=="Knight")
         {
             if(shootTimer<=0)
             {
+                animator.SetFloat("state", 0f);
+                animator.SetFloat("attack", 10f);
                 sword.SetActive(true);
                 delay = 0.5f;
             }
@@ -209,21 +181,28 @@ public class Actions : MonoBehaviour
         {
             if (shootTimer <= 0)
             {
+                animator.SetFloat("state", 0f);
+                animator.SetFloat("attack", 10f);
                 GameObject bulletr = Instantiate(arrow, shooter.transform.position, shooter.transform.rotation);
                 Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
                 rgbr.AddForce(shooter.transform.right * bulletForce, ForceMode2D.Impulse);
                 Destroy(bulletr, 0.2f);
                 shootTimer = Status.attackSpeed;
+                delay = 0.5f;
+               
             }
         }
         if (Status.playerClass == "Wizard")
         {
             if (shootTimer <= 0)
             {
+                animator.SetFloat("state", 0f);
+                animator.SetFloat("attack", 10f);
                 GameObject bulletr = Instantiate(magic, shooter.transform.position, shooter.transform.rotation);
                 Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
                 rgbr.AddForce(shooter.transform.right * bulletForce, ForceMode2D.Impulse);
                 Destroy(bulletr, 0.2f);
+                delay = 0.5f;
                 shootTimer = Status.attackSpeed;
             }
         }
@@ -241,8 +220,9 @@ public class Actions : MonoBehaviour
     void Update()
     {
         GetAnimator();
-        KeyboardControl();
-        //ButtonControl();
+        //KeyboardControl();
+        ButtonControl();
+        
         shootTimer -= Time.deltaTime;
         if (Status.playerClass=="Rogue" || Status.playerClass=="Knight")
         {
@@ -253,6 +233,8 @@ public class Actions : MonoBehaviour
                 {
                     sword.SetActive(false);
                     shootTimer = Status.attackSpeed;
+                    animator.SetFloat("state", 10f);
+                    animator.SetFloat("attack", 0f);
                 }
             }
             
@@ -260,8 +242,12 @@ public class Actions : MonoBehaviour
         if(Status.playerClass=="Wizard"||Status.playerClass=="Archer")
         {
             shootTimer-=Time.deltaTime;
+            delay -= Time.deltaTime;
+            if (delay <= 0)
+            {
+                animator.SetFloat("state", 10f);
+                animator.SetFloat("attack", 0f);
+            }
         }
-
-        
     }
 }
