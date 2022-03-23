@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SesKontrol : MonoBehaviour
+public class Stalactite : MonoBehaviour
 {
-  //  public AudioSource arkaPlan;
+    // Start is called before the first frame update
     void Start()
     {
-        //arkaPlan.Play();
         
     }
 

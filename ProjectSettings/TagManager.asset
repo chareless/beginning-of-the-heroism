@@ -15,6 +15,7 @@ TagManager:
   - Log
   - Bullet
   - ForestBoss
+  - Ice
   layers:
   - Default
   - TransparentFX

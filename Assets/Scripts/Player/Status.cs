@@ -13,6 +13,7 @@ public class Status : MonoBehaviour
     public GameObject map1;
     public GameObject map2;
     public GameObject map3;
+    public GameObject GameOverCanvas;
     public Text potText;
     public Text potTextGame;
     public Text damageText;
@@ -152,6 +153,7 @@ public class Status : MonoBehaviour
         if(health<=0)
         {
             health = 0;
+            GameOverCanvas.SetActive(true);
         }
         else if(health>=maxHealth)
         {
@@ -182,6 +184,10 @@ public class Status : MonoBehaviour
         {
             TakePot();
             Destroy(collision.gameObject);
+        }
+        if(collision.gameObject.tag=="Ice")
+        {
+            health -= 2;
         }
     }
 

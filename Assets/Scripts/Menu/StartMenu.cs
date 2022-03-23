@@ -52,7 +52,7 @@ public class StartMenu : MonoBehaviour
         StartMenuCanvas.SetActive(false);
         PlayNextClick();
         isContinue = false;
-        anaMenu.volume = 0;
+        anaMenu.Stop();
     }
 
     public void RogueButton()
@@ -134,7 +134,7 @@ public class StartMenu : MonoBehaviour
         CreditsCanvas.SetActive(false);
         SelectCharacterCanvas.SetActive(false);
         PlayBackClick();
-        anaMenu.volume = 1;
+        anaMenu.Play();
     }
 
     public void QuitButton()
