@@ -14,7 +14,7 @@ public class Actions : MonoBehaviour
     public GameObject shooter;
     public GameObject arrow;
     public GameObject magic;
-    public static float jump=7f;
+    public static float jump=6f;
     public static int rotate;
     public float shootTimer;
     public float delay = 0.5f;
