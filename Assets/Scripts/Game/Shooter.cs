@@ -7,7 +7,7 @@ public class Shooter : MonoBehaviour
     public GameObject ice;
     public Transform shootPoint;
     public static float bulletForce = 10000f;
-    public float sayac = 2;
+    public float sayac = 3;
 
     void Update()
     {
@@ -18,7 +18,7 @@ public class Shooter : MonoBehaviour
             Rigidbody2D rgbr = bullet.GetComponentInChildren<Rigidbody2D>();
             rgbr.AddForce(shootPoint.right * bulletForce, ForceMode2D.Impulse);
             Destroy(bullet, 2f);
-            sayac = 2;
+            sayac = 3;
         }
         
     }

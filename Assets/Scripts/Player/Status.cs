@@ -187,7 +187,11 @@ public class Status : MonoBehaviour
         }
         if(collision.gameObject.tag=="Ice")
         {
-            health -= 2;
+            health -= 1;
+        }
+        if (collision.gameObject.tag == "IceGround")
+        {
+            health -= 5;
         }
     }
 
