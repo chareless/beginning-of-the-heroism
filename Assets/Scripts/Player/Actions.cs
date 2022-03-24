@@ -18,7 +18,7 @@ public class Actions : MonoBehaviour
     public static int rotate;
     public float shootTimer;
     public float delay = 0.5f;
-    public static float bulletForce;
+    public static float bulletForce=20f;
     Rigidbody2D rigidbody;
     public static float speed = 6f;
     public static float speedKey = 6f;
@@ -72,18 +72,22 @@ public class Actions : MonoBehaviour
         if (Status.playerClass == "Rogue")
         {
             Rogue.transform.rotation = Quaternion.Euler(0, rotate, 0);
+            sword.transform.rotation= Quaternion.Euler(0, rotate, 0);
         }
         else if (Status.playerClass == "Wizard")
         {
             Wizard.transform.rotation = Quaternion.Euler(0, rotate, 0);
+            shooter.transform.rotation = Quaternion.Euler(rotate, 0, rotate);
         }
         else if (Status.playerClass == "Archer")
         {
             Archer.transform.rotation = Quaternion.Euler(0, rotate, 0);
+            shooter.transform.rotation = Quaternion.Euler(rotate, 0, rotate);
         }
         else if (Status.playerClass == "Knight")
         {
             Knight.transform.rotation = Quaternion.Euler(0, rotate, 0);
+            sword.transform.rotation = Quaternion.Euler(0, rotate, 0);
         }
     }
     public void RightMovement()
@@ -95,8 +99,6 @@ public class Actions : MonoBehaviour
         rotate = 0;
         RotatePlayer();
         yatay = 1;
-
-        bulletForce = 20f;
         if (Status.playerClass == "Rogue")
         {
             sword.transform.position = Rogue.transform.position + new Vector3(0.85f, -0.85f, 0);
@@ -123,7 +125,6 @@ public class Actions : MonoBehaviour
         rotate = 180;
         RotatePlayer();
         yatay = -1;
-        bulletForce = -20f;
         if (Status.playerClass == "Rogue")
         {
             sword.transform.position = Rogue.transform.position + new Vector3(-0.95f, -0.85f, 0);

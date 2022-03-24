@@ -65,10 +65,10 @@ public class Status : MonoBehaviour
         }
         else
         {
-            playerClass = "Rogue";
+            playerClass = "Archer";
             Destroy(Knight);
             Destroy(Wizard);
-            Destroy(Archer);
+            Destroy(Rogue);
         }
     }
 
