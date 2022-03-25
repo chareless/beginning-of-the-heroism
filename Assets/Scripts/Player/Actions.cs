@@ -207,7 +207,7 @@ public class Actions : MonoBehaviour
 
     public void UsePot()
     {
-        if (Status.potCount > 0)
+        if (Status.potCount > 0 && Status.health!=Status.maxHealth)
         {
             Status.potCount--;
             Status.health = Status.maxHealth;
