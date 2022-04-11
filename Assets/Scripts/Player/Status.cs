@@ -32,8 +32,9 @@ public class Status : MonoBehaviour
     public static float attackSpeed;
     void Start()
     {
-        SpawnPlayer();
         CheckLoadGame();
+        SpawnPlayer();
+        playerStats();
         CheckMap();
     }
 
@@ -76,26 +77,33 @@ public class Status : MonoBehaviour
     {
         if (StartMenu.isContinue == true)
         {
-
+            health = LoadData.loadedHealth;
+            potCount = LoadData.loadedPot;
+            currentMap = LoadData.loadedMap;
+            playerClass = LoadData.loadedClass;
         }
         else
         {
             maxHealth = 5;
             maxPots = 3;
             health = maxHealth;
-            if(playerClass=="Rogue" || playerClass=="Knight")
-            {
-                damage = 4;
-            }
-            else if(playerClass=="Archer"|| playerClass=="Wizard")
-            {
-                damage = 3;
-            }
-            
-            attackSpeed = 1.5f;
-            potCount = 0;
-            currentMap = "IceCave";
         }
+    }
+
+    void playerStats()
+    {
+        if (playerClass == "Rogue" || playerClass == "Knight")
+        {
+            damage = 4;
+        }
+        else if (playerClass == "Archer" || playerClass == "Wizard")
+        {
+            damage = 3;
+        }
+
+        attackSpeed = 1.5f;
+        potCount = 0;
+        currentMap = "Forest";
     }
 
     void CheckMap()

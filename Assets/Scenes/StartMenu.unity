@@ -3363,6 +3363,7 @@ MonoBehaviour:
   SelectWizard: {fileID: 2068338752}
   SelectArcher: {fileID: 1128633281}
   SelectKnight: {fileID: 1431558197}
+  continueButton: {fileID: 981664119}
   gameVersion: {fileID: 1476565779}
   volumeText: {fileID: 164468986}
   fpsText: {fileID: 2077943118}

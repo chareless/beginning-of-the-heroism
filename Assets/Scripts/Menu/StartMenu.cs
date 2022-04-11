@@ -18,6 +18,7 @@ public class StartMenu : MonoBehaviour
     public Button SelectWizard;
     public Button SelectArcher;
     public Button SelectKnight;
+    public Button continueButton;
     public Text gameVersion;
     public Text volumeText;
     public Text fpsText;
@@ -145,7 +146,14 @@ public class StartMenu : MonoBehaviour
 
     public void ContinueControl()
     {
-
+        if (LoadData.loadedMap == "")
+        {
+            continueButton.interactable = false;
+        }
+        else
+        {
+            continueButton.interactable = true;
+        }
     }
 
     public void VolumeSlider(float volume)
@@ -222,7 +230,7 @@ public class StartMenu : MonoBehaviour
     }
     public void LoadValues()
     {
-        //LoadData.loadData();
+        LoadData.loadData();
 
         VolumeControl();
 

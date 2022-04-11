@@ -2,17 +2,71 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class LoadData : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static int loadedHealth;
+    public static int loadedPot;
+    public static string loadedMap;
+    public static string loadedClass;
+
+    static void healthCheck()
     {
-        
+        if(PlayerPrefs.GetInt("Health")!= 0 )
+        {
+            loadedHealth = PlayerPrefs.GetInt("Health");
+        }
+        else
+        {
+            loadedHealth = 0;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    static void potCheck()
     {
-        
+        if(PlayerPrefs.GetInt("Pot")!=0)
+        {
+            loadedPot = PlayerPrefs.GetInt("Pot");
+        }
+        else
+        {
+            loadedPot= 0;
+        }
+    }
+
+    static void mapCheck()
+    {
+        if(PlayerPrefs.GetString("Map") != "Forest")
+        {
+            loadedMap = PlayerPrefs.GetString("Map");
+        }
+        else
+        {
+            loadedMap = "Forest";
+        }
+    }
+
+    static void classCheck()
+    {
+        if (PlayerPrefs.GetString("Class") != "")
+        {
+            loadedClass = PlayerPrefs.GetString("Class");
+        }
+        else
+        {
+            loadedClass = "Rogue";
+        }
+    }
+
+    public static void loadData()
+    {
+        healthCheck();
+        potCheck();
+        mapCheck();
+        classCheck();
+    }
+
+    public void Start()
+    {
+        loadData();
     }
 }
