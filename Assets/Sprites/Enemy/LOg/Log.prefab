@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &709313597837459914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2754551524018056876}
+  m_Layer: 0
+  m_Name: AttackR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2754551524018056876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709313597837459914}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.311, y: -0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3116631206483137778}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3116631206483137776
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,8 +59,10 @@ Transform:
   m_GameObject: {fileID: 3116631206483137776}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -97.29704, y: 6.502651, z: 4.604486}
-  m_LocalScale: {x: 4.6264, y: 4.735, z: 1}
-  m_Children: []
+  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_Children:
+  - {fileID: 3707756045355519366}
+  - {fileID: 2754551524018056876}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -125,8 +157,8 @@ PolygonCollider2D:
       - {x: -0.17643686, y: -0.094398744}
       - {x: -0.11184573, y: -0.16669562}
       - {x: -0.17402376, y: -0.20502801}
-      - {x: -0.18707106, y: -0.2281799}
-      - {x: 0.21647257, y: -0.23162521}
+      - {x: -0.17619535, y: -0.22002321}
+      - {x: 0.2092221, y: -0.21984328}
       - {x: 0.20415999, y: -0.20784396}
       - {x: 0.11068943, y: -0.1432503}
       - {x: 0.17410474, y: -0.09540625}
@@ -169,7 +201,41 @@ MonoBehaviour:
   health: 0
   enemyType: 
   pot: {fileID: 0}
+  throwable: {fileID: 7494928468114733181, guid: 50aaf0f2f10757a4a8f3d296dc1f12dd, type: 3}
   moveSayac: 0
   attackSayac: 0
   beklemeSayac: 0
   rotate: 0
+  bulletForce: 20
+  attackR: {fileID: 2754551524018056876}
+  attackL: {fileID: 3707756045355519366}
+--- !u!1 &8415556429302648620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3707756045355519366}
+  m_Layer: 0
+  m_Name: AttackL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3707756045355519366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8415556429302648620}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.311, y: -0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3116631206483137778}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

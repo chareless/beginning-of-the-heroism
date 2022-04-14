@@ -11,11 +11,15 @@ public class Enemy : MonoBehaviour
     public int health;
     public string enemyType;
     public GameObject pot;
+    public GameObject throwable;
     public float moveSayac;
     public float attackSayac;
     public float beklemeSayac;
     public float rotate;
     Vector3 velocity;
+    public float bulletForce = 20f;
+    public Transform attackR;
+    public Transform attackL;
     void Start()
     {
         CreateEnemy();
@@ -72,6 +76,7 @@ public class Enemy : MonoBehaviour
         else if(gameObject.tag=="IceSlime")
         {
             health = 30;
+            attackSayac = 2f;
         }
         enemyType = gameObject.tag;
     }
@@ -118,12 +123,35 @@ public class Enemy : MonoBehaviour
                 beklemeSayac -= Time.deltaTime;
                 if(beklemeSayac<=0)
                 {
-                    //hit yap
+                    GameObject bulletr = Instantiate(throwable, attackR.transform.position, throwable.transform.rotation);
+                    GameObject bulletl = Instantiate(throwable, attackL.transform.position, throwable.transform.rotation);
+                    Rigidbody2D rgbr = bulletr.GetComponentInChildren<Rigidbody2D>();
+                    Rigidbody2D rgbl = bulletl.GetComponentInChildren<Rigidbody2D>();
+                    rgbr.AddForce(attackR.transform.right * bulletForce, ForceMode2D.Impulse);
+                    rgbl.AddForce(attackL.transform.right * -bulletForce, ForceMode2D.Impulse);
+                    Destroy(bulletr, 0.2f);
+                    Destroy(bulletl, 0.2f);
                     hold = 1;
-                    attackSayac = 2f;
+                    attackSayac = 3f;
                     beklemeSayac = 1f;
                     transform.rotation = Quaternion.Euler(0, rotate, 0);
                 }
+            }
+        }
+        else if(gameObject.tag=="IceSlime")
+        {
+            attackSayac -= Time.deltaTime;
+            if (attackSayac <= 0)
+            {
+                GameObject bulletr = Instantiate(throwable, attackR.transform.position, throwable.transform.rotation);
+                GameObject bulletl = Instantiate(throwable, attackL.transform.position, throwable.transform.rotation);
+                Rigidbody2D rgbr = bulletr.GetComponentInChildren<Rigidbody2D>();
+                Rigidbody2D rgbl = bulletl.GetComponentInChildren<Rigidbody2D>();
+                rgbr.AddForce(attackR.transform.right * bulletForce, ForceMode2D.Impulse);
+                rgbl.AddForce(attackL.transform.right * -bulletForce, ForceMode2D.Impulse);
+                Destroy(bulletr, 0.25f);
+                Destroy(bulletl, 0.25f);
+                attackSayac = 2f;
             }
         }
     }

@@ -201,10 +201,6 @@ public class Status : MonoBehaviour
         {
             health -= 5;
         }
-        if(collision.gameObject.tag=="Log")
-        {
-            health -= 1;
-        }
     }
 
 }
