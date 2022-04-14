@@ -5,11 +5,17 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     Rigidbody2D enemyRb;
-    public static float speed;
+    public float speed;
+    public float hold;
     public float sayac = 2f;
     public int health;
     public string enemyType;
     public GameObject pot;
+    public float moveSayac;
+    public float attackSayac;
+    public float beklemeSayac;
+    public float rotate;
+    Vector3 velocity;
     void Start()
     {
         CreateEnemy();
@@ -37,7 +43,12 @@ public class Enemy : MonoBehaviour
         else if(gameObject.tag=="Log")
         {
             health = 30;
-        }
+            speed = -1;
+            hold = 1;
+            moveSayac = 12f;
+            attackSayac = 3f;
+            beklemeSayac = 1f;
+}
         else if(gameObject.tag=="ForestBoss")
         {
             health = 100;
@@ -84,9 +95,48 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void Attack()
+    {
+        if(gameObject.tag=="Log")
+        {
+            moveSayac -= Time.deltaTime;
+            if(moveSayac<=0)
+            {
+                rotate += 180;
+                if(rotate==360)
+                {
+                    rotate = 0;
+                }
+                speed *= -1;
+                moveSayac = 12f;
+            }
+            attackSayac -= Time.deltaTime;
+            if(attackSayac<=0)
+            {
+                hold = 0;
+                beklemeSayac -= Time.deltaTime;
+                if(beklemeSayac<=0)
+                {
+                    //hit yap
+                    hold = 1;
+                    attackSayac = 2f;
+                    beklemeSayac = 1f;
+                    transform.rotation = Quaternion.Euler(0, rotate, 0);
+                }
+            }
+        }
+    }
+
+    void Move()
+    {
+        transform.position += new Vector3(speed, 0)*Time.deltaTime*hold;
+    }
     void Update()
     {
         HealthControl();
+        Move();
+        Attack();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

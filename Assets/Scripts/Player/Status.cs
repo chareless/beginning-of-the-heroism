@@ -103,7 +103,7 @@ public class Status : MonoBehaviour
 
         attackSpeed = 1.5f;
         potCount = 0;
-        currentMap = "IceCave";
+        currentMap = "Forest";
     }
 
     void CheckMap()
@@ -200,6 +200,10 @@ public class Status : MonoBehaviour
         if (collision.gameObject.tag == "IceGround")
         {
             health -= 5;
+        }
+        if(collision.gameObject.tag=="Log")
+        {
+            health -= 1;
         }
     }
 
