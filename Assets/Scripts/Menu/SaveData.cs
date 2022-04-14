@@ -36,7 +36,6 @@ public class SaveData : MonoBehaviour
         PlayerPrefs.SetString("Class", currentClass);
         PlayerPrefs.Save();
     }
-
     public static void saveData()
     {
         saveHealth();

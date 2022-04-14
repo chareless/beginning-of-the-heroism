@@ -22,6 +22,8 @@ public class StartMenu : MonoBehaviour
     public Text gameVersion;
     public Text volumeText;
     public Text fpsText;
+    public Text deathText;
+    public Text deathTotalText;
     public Slider volumeSlider;
     public AudioSource ClickSound;
     public AudioClip nextClick;
@@ -30,12 +32,16 @@ public class StartMenu : MonoBehaviour
     public static float volumeValue;
     public static bool isContinue;
     public AudioSource anaMenu;
+    public static int deathOnGame;
+    public static int deathOnTotal;
 
     public void Start()
     {
         LoadValues();
         gameVersion.text = Application.version;
         fpsText.text = Application.targetFrameRate.ToString();
+        deathText.text=deathOnGame.ToString();
+        deathTotalText.text=deathOnTotal.ToString();
     }
 
     public void PlayNextClick()
@@ -226,7 +232,15 @@ public class StartMenu : MonoBehaviour
 
     public void GameEndControl()
     {
-        SelectKnight.interactable = false;
+        if(PlayerPrefs.GetInt("GameEnd")==1)
+        {
+            SelectKnight.interactable = true;
+        }
+        else
+        {
+            SelectKnight.interactable = false;
+        }
+        
     }
     public void LoadValues()
     {

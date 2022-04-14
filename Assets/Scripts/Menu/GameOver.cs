@@ -10,18 +10,52 @@ public class GameOver : MonoBehaviour
     public GameObject menuButton;
     public GameObject quitButton;
     public Text gameEndText;
+    public string deathText;
 
     void Start()
     {
         if(Status.health<=0)
         {
-            gameEndText.text = "GAME OVER";
+            RandomMessage();
+            gameEndText.text = deathText;
             gameEndText.color = Color.red;
+            StartMenu.deathOnGame++;
+            PlayerPrefs.SetInt("GameDeath", StartMenu.deathOnGame);
+            PlayerPrefs.Save();
         }
         else
         {
             gameEndText.text = "CONGRATULATIONS";
             gameEndText.color= Color.yellow;
+        }
+    }
+    
+    void RandomMessage()
+    {
+        int random = Random.Range(0,6);
+        if(random==0)
+        {
+            deathText = "GAME OVER";
+        }
+        else if(random==1)
+        {
+            deathText = "TRY AGAIN";
+        }
+        else if(random==2)
+        {
+            deathText = "MAYBE ANOTHER TIME";
+        }
+        else if(random==3)
+        {
+            deathText = "DO OR DO NOT";
+        }
+        else if(random==4)
+        {
+            deathText = "TATAKAE";
+        }
+        else if(random==5)
+        {
+            deathText = "DEATH IS NOT AN ESCAPE";
         }
     }
     public void MenuButton()

@@ -8,6 +8,8 @@ public class LoadData : MonoBehaviour
     public static int loadedPot;
     public static string loadedMap;
     public static string loadedClass;
+    public static int loadedDeath;
+    public static int loadedTotalDeath;
 
     static void healthCheck()
     {
@@ -57,12 +59,39 @@ public class LoadData : MonoBehaviour
         }
     }
 
+    static void deathCheck()
+    {
+        if(PlayerPrefs.GetInt("GameDeath")!=0)
+        {
+            loadedDeath = PlayerPrefs.GetInt("GameDeath");
+        }
+        else
+        {
+            loadedDeath= 0;
+        }
+    }
+
+    static void totalDeathCheck()
+    {
+        if (PlayerPrefs.GetInt("TotalDeath") != 0)
+        {
+            loadedTotalDeath = PlayerPrefs.GetInt("TotalDeath");
+        }
+        else
+        {
+            loadedTotalDeath = 0;
+        }
+    }
+
+
     public static void loadData()
     {
         healthCheck();
         potCheck();
         mapCheck();
         classCheck();
+        deathCheck();
+        totalDeathCheck();
     }
 
     public void Start()
