@@ -17,6 +17,11 @@ TagManager:
   - ForestBoss
   - Ice
   - IceGround
+  - Kobold
+  - IceGolem
+  - Warg
+  - WargRider
+  - IceSlime
   layers:
   - Default
   - TransparentFX

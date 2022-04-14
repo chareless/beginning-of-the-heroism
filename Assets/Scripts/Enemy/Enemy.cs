@@ -20,34 +20,49 @@ public class Enemy : MonoBehaviour
     {
         if(gameObject.tag=="Goblin")
         {
-            enemyType = "Goblin";
             health = 10;
         }
         else if(gameObject.tag=="PossesedGoblin")
         {
-            enemyType = "PossesedGoblin";
             health = 10;
         }
         else if(gameObject.tag=="Spider")
         {
-            enemyType = "Spider";
             health = 15;
         }
         else if(gameObject.tag=="SpiderRider")
         {
-            enemyType = "SpiderRider";
             health = 15;
         }
         else if(gameObject.tag=="Log")
         {
-            enemyType = "Log";
             health = 30;
         }
         else if(gameObject.tag=="ForestBoss")
         {
-            enemyType = "ForestBoss";
             health = 100;
         }
+        else if(gameObject.tag=="Kobold")
+        {
+            health = 10;
+        }
+        else if(gameObject.tag=="Warg")
+        {
+            health = 15;
+        }
+        else if(gameObject.tag=="WargRider")
+        {
+            health = 15;
+        }
+        else if(gameObject.tag=="IceGolem")
+        {
+            health = 40;
+        }
+        else if(gameObject.tag=="IceSlime")
+        {
+            health = 30;
+        }
+        enemyType = gameObject.tag;
     }
 
     void GetDamage(int damage)

@@ -66,10 +66,10 @@ public class Status : MonoBehaviour
         }
         else
         {
-            playerClass = "Archer";
+            playerClass = "Rogue";
             Destroy(Knight);
             Destroy(Wizard);
-            Destroy(Rogue);
+            Destroy(Archer);
         }
     }
 
@@ -103,7 +103,7 @@ public class Status : MonoBehaviour
 
         attackSpeed = 1.5f;
         potCount = 0;
-        currentMap = "Forest";
+        currentMap = "IceCave";
     }
 
     void CheckMap()
