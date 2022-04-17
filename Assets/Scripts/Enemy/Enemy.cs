@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public string enemyType;
     public GameObject pot;
     public GameObject throwable;
+    public GameObject attackObj;
     public float moveSayac;
     public float attackSayac;
     public float beklemeSayac;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
     public float bulletForce = 20f;
     public Transform attackR;
     public Transform attackL;
+    public int attackType;
     void Start()
     {
         CreateEnemy();
@@ -31,18 +33,38 @@ public class Enemy : MonoBehaviour
         if(gameObject.tag=="Goblin")
         {
             health = 10;
+            attackSayac = 2f;
+            beklemeSayac = 0.5f;
+            attackType =Random.Range(0,2);
+            if(Status.playerClass=="Wizard"|| Status.playerClass=="Archer")
+            {
+                attackType = 1;
+            }
         }
         else if(gameObject.tag=="PossesedGoblin")
         {
             health = 10;
+            attackSayac = 2f;
+            beklemeSayac = 0.5f;
+            attackType = Random.Range(0, 2);
+            if (Status.playerClass == "Wizard" || Status.playerClass == "Archer")
+            {
+                attackType = 1;
+            }
         }
         else if(gameObject.tag=="Spider")
         {
-            health = 15;
+            health = 20;
+            attackSayac = 3f;
+            beklemeSayac = 0.5f;
+            attackType = 0;
         }
         else if(gameObject.tag=="SpiderRider")
         {
-            health = 15;
+            health = 20;
+            attackSayac = 3f;
+            beklemeSayac = 0.5f;
+            attackType = 0;
         }
         else if(gameObject.tag=="Log")
         {
@@ -60,26 +82,47 @@ public class Enemy : MonoBehaviour
         else if(gameObject.tag=="Kobold")
         {
             health = 10;
+            attackSayac = 2f;
+            beklemeSayac = 0.5f;
+            attackType = Random.Range(0, 2);
+            if (Status.playerClass == "Wizard" || Status.playerClass == "Archer")
+            {
+                attackType = 1;
+            }
         }
         else if(gameObject.tag=="Warg")
         {
-            health = 15;
+            health = 20;
+            attackSayac = 3f;
+            beklemeSayac = 0.5f;
+            attackType = 0;
         }
         else if(gameObject.tag=="WargRider")
         {
-            health = 15;
+            health = 20;
+            attackSayac = 3f;
+            beklemeSayac = 0.5f;
+            attackType = 0;
         }
         else if(gameObject.tag=="IceGolem")
         {
             health = 40;
+            attackSayac = 4f;
+            beklemeSayac = 1f;
+            attackType = Random.Range(0, 2);
+            if (Status.playerClass == "Wizard" || Status.playerClass == "Archer")
+            {
+                attackType = 1;
+            }
         }
         else if(gameObject.tag=="IceSlime")
         {
-            health = 30;
+            health = 25;
             attackSayac = 2f;
         }
         enemyType = gameObject.tag;
     }
+
 
     void GetDamage(int damage)
     {
@@ -115,6 +158,7 @@ public class Enemy : MonoBehaviour
                 }
                 speed *= -1;
                 moveSayac = 12f;
+                transform.rotation = Quaternion.Euler(0, rotate, 0);
             }
             attackSayac -= Time.deltaTime;
             if(attackSayac<=0)
@@ -134,7 +178,6 @@ public class Enemy : MonoBehaviour
                     hold = 1;
                     attackSayac = 3f;
                     beklemeSayac = 1f;
-                    transform.rotation = Quaternion.Euler(0, rotate, 0);
                 }
             }
         }
@@ -152,6 +195,57 @@ public class Enemy : MonoBehaviour
                 Destroy(bulletr, 0.25f);
                 Destroy(bulletl, 0.25f);
                 attackSayac = 2f;
+            }
+        }
+        else if(gameObject.tag == "Goblin" || gameObject.tag == "PossesedGoblin" || gameObject.tag== "Kobold" || gameObject.tag == "IceGolem" ||
+                gameObject.tag == "Spider" || gameObject.tag == "SpiderRider" || gameObject.tag == "Warg" || gameObject.tag == "WargRider")
+        {
+            attackSayac -= Time.deltaTime;
+            if(attackSayac<=0)
+            {
+                if (attackType == 0)
+                {
+                    attackObj.SetActive(true);
+                    if (attackObj.activeInHierarchy == true)
+                    {
+                        beklemeSayac -= Time.deltaTime;
+                        if (beklemeSayac <= 0)
+                        {
+                            attackObj.SetActive(false);
+                            if (gameObject.tag == "Spider" || gameObject.tag == "SpiderRider" || gameObject.tag == "Warg" || gameObject.tag == "WargRider")
+                            {
+                                attackSayac = 3f;
+                                beklemeSayac = 0.5f;
+                            }
+                            else if (gameObject.tag == "Goblin" || gameObject.tag == "PossesedGoblin" || gameObject.tag == "Kobold")
+                            {
+                                attackSayac = 2f;
+                                beklemeSayac = 0.5f;
+                            }
+                            else if(gameObject.tag=="IceGolem")
+                            {
+                                attackSayac = 4f;
+                                beklemeSayac = 1f;
+                            }
+                        }
+                    }
+                }
+                else if (attackType == 1)
+                {
+                    GameObject bullet = Instantiate(throwable, attackR.transform.position, throwable.transform.rotation);
+                    Rigidbody2D rgb = bullet.GetComponentInChildren<Rigidbody2D>();
+                    rgb.AddForce(attackR.transform.right * bulletForce, ForceMode2D.Impulse);
+                    if(gameObject.tag=="IceGolem")
+                    {
+                        Destroy(bullet, 1f);
+                        attackSayac = 4f;
+                    }
+                    else
+                    {
+                        Destroy(bullet, 0.25f);
+                        attackSayac = 2f;
+                    }
+                }
             }
         }
     }
