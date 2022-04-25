@@ -22,6 +22,21 @@ TagManager:
   - Warg
   - WargRider
   - IceSlime
+  - EnemyKnife
+  - EnemySpear
+  - EnemyBite
+  - EnemyRock
+  - Gate1
+  - Gate2
+  - Gate3
+  - BossGate3
+  - Key
+  - EnemyIce
+  - EnemyThorn
+  - RogueSkill
+  - WizardSkill
+  - ArcherSkill
+  - KnightSkill
   layers:
   - Default
   - TransparentFX

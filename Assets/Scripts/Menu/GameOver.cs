@@ -25,7 +25,7 @@ public class GameOver : MonoBehaviour
         }
         else
         {
-            gameEndText.text = "CONGRATULATIONS";
+            gameEndText.text = "CONGRATULATIONS!";
             gameEndText.color= Color.yellow;
         }
     }
@@ -39,23 +39,23 @@ public class GameOver : MonoBehaviour
         }
         else if(random==1)
         {
-            deathText = "TRY AGAIN";
+            deathText = "TRY AGAIN!";
         }
         else if(random==2)
         {
-            deathText = "MAYBE ANOTHER TIME";
+            deathText = "MAYBE ANOTHER TIME!";
         }
         else if(random==3)
         {
-            deathText = "DO OR DO NOT";
+            deathText = "DO OR DO NOT!";
         }
         else if(random==4)
         {
-            deathText = "TATAKAE";
+            deathText = "TATAKAE!";
         }
         else if(random==5)
         {
-            deathText = "DEATH IS NOT AN ESCAPE";
+            deathText = "DEATH IS NOT ESCAPE..";
         }
     }
     public void MenuButton()

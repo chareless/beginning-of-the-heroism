@@ -11,6 +11,7 @@ public class StartMenu : MonoBehaviour
     public GameObject CreditsCanvas;
     public GameObject SelectCharacterCanvas;
     public GameObject ButtonContinue;
+    public GameObject GameEndCanvas;
     public Button button30fps;
     public Button button60fps;
     public Button button75fps;
@@ -38,6 +39,7 @@ public class StartMenu : MonoBehaviour
     public void Start()
     {
         LoadValues();
+        ThisGameEndControl();
         gameVersion.text = Application.version;
         fpsText.text = Application.targetFrameRate.ToString();
         deathText.text=deathOnGame.ToString();
@@ -65,9 +67,12 @@ public class StartMenu : MonoBehaviour
     public void RogueButton()
     {
         Status.playerClass = "Rogue";
+        Status.currentMap = "Forest";
         SelectWizard.interactable = false;
         SelectArcher.interactable = false;
         SelectKnight.interactable = false;
+        PlayerPrefs.SetInt("GameDeath", 0);
+        PlayerPrefs.Save();
         PlayNextClick();
         SceneManager.LoadScene("SampleScene");
     }
@@ -75,9 +80,12 @@ public class StartMenu : MonoBehaviour
     public void WizardButton()
     {
         Status.playerClass = "Wizard";
+        Status.currentMap = "Forest";
         SelectRogue.interactable = false;
         SelectArcher.interactable = false;
         SelectKnight.interactable = false;
+        PlayerPrefs.SetInt("GameDeath", 0);
+        PlayerPrefs.Save();
         PlayNextClick();
         SceneManager.LoadScene("SampleScene");
     }
@@ -85,9 +93,12 @@ public class StartMenu : MonoBehaviour
     public void ArcherButton()
     {
         Status.playerClass = "Archer";
+        Status.currentMap = "Forest";
         SelectRogue.interactable = false;
         SelectWizard.interactable = false;
         SelectKnight.interactable = false;
+        PlayerPrefs.SetInt("GameDeath", 0);
+        PlayerPrefs.Save();
         PlayNextClick();
         SceneManager.LoadScene("SampleScene");
     }
@@ -95,9 +106,12 @@ public class StartMenu : MonoBehaviour
     public void KnightButton()
     {
         Status.playerClass = "Knight";
+        Status.currentMap = "Forest";
         SelectRogue.interactable = false;
         SelectWizard.interactable = false;
         SelectArcher.interactable = false;
+        PlayerPrefs.SetInt("GameDeath", 0);
+        PlayerPrefs.Save();
         PlayNextClick();
         SceneManager.LoadScene("SampleScene");
     }
@@ -140,6 +154,7 @@ public class StartMenu : MonoBehaviour
         OptionsCanvas.SetActive(false);
         CreditsCanvas.SetActive(false);
         SelectCharacterCanvas.SetActive(false);
+        GameEndCanvas.SetActive(false);
         PlayBackClick();
         anaMenu.Play();
     }
@@ -241,6 +256,16 @@ public class StartMenu : MonoBehaviour
             SelectKnight.interactable = false;
         }
         
+    }
+
+    public void ThisGameEndControl()
+    {
+        if(PlayerPrefs.GetInt("ThisGameEnd")==1)
+        {
+            GameEndCanvas.SetActive(true);
+            PlayerPrefs.SetInt("ThisGameEnd", 0);
+            StartMenuCanvas.SetActive(false);
+        }
     }
     public void LoadValues()
     {

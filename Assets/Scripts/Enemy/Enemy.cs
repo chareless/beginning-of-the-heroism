@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
     public GameObject pot;
     public GameObject throwable;
     public GameObject attackObj;
+    public GameObject Door1;
+    public GameObject Door2;
+    public GameObject Door3;
     public float moveSayac;
     public float attackSayac;
     public float beklemeSayac;
@@ -77,7 +80,8 @@ public class Enemy : MonoBehaviour
 }
         else if(gameObject.tag=="ForestBoss")
         {
-            health = 100;
+            //health = 100;
+            health = 10;
         }
         else if(gameObject.tag=="Kobold")
         {
@@ -137,6 +141,7 @@ public class Enemy : MonoBehaviour
             Rigidbody2D rgbr = pot.GetComponent<Rigidbody2D>();
             rgbr.AddForce(transform.up * 3f, ForceMode2D.Impulse);
             Destroy(gameObject);
+            Door1.SetActive(true);
         }
         else if (health<=0)
         {
@@ -192,8 +197,8 @@ public class Enemy : MonoBehaviour
                 Rigidbody2D rgbl = bulletl.GetComponentInChildren<Rigidbody2D>();
                 rgbr.AddForce(attackR.transform.right * bulletForce, ForceMode2D.Impulse);
                 rgbl.AddForce(attackL.transform.right * -bulletForce, ForceMode2D.Impulse);
-                Destroy(bulletr, 0.25f);
-                Destroy(bulletl, 0.25f);
+                Destroy(bulletr, 0.4f);
+                Destroy(bulletl, 0.4f);
                 attackSayac = 2f;
             }
         }
@@ -273,5 +278,28 @@ public class Enemy : MonoBehaviour
             GetDamage(Status.damage);
             Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.tag == "RogueSkill")
+        {
+            GetDamage(Status.skillDamage);
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "WizardSkill")
+        {
+            GetDamage(Status.skillDamage);
+        }
+
+        if (collision.gameObject.tag == "ArcherSkill")
+        {
+            GetDamage(Status.skillDamage);
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "KnightSkill")
+        {
+            GetDamage(Status.skillDamage);
+        }
+
     }
 }

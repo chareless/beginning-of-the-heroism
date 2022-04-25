@@ -127,13 +127,18 @@ MonoBehaviour:
   enemyType: 
   pot: {fileID: 0}
   throwable: {fileID: 8535486602283217858, guid: 4fb65481c8bed2246a19cca9c33de2ff, type: 3}
+  attackObj: {fileID: 0}
+  Door1: {fileID: 0}
+  Door2: {fileID: 0}
+  Door3: {fileID: 0}
   moveSayac: 0
   attackSayac: 0
   beklemeSayac: 0
   rotate: 0
-  bulletForce: 1
+  bulletForce: 20
   attackR: {fileID: 8391070381061222473}
   attackL: {fileID: 1897251024687447851}
+  attackType: 0
 --- !u!70 &6894761155406695469
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

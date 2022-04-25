@@ -14,6 +14,7 @@ public class Status : MonoBehaviour
     public GameObject map2;
     public GameObject map3;
     public GameObject GameOverCanvas;
+    public GameObject BossDoor;
     public Text potText;
     public Text potTextGame;
     public Text damageText;
@@ -28,6 +29,8 @@ public class Status : MonoBehaviour
     public static int maxPots;
     public static int health;
     public static int damage;
+    public static int skillDamage;
+    public static float skillCD;
     public static int potCount;
     public static float attackSpeed;
     void Start()
@@ -36,6 +39,7 @@ public class Status : MonoBehaviour
         SpawnPlayer();
         playerStats();
         CheckMap();
+        SaveData.saveData();
     }
 
     void SpawnPlayer()
@@ -81,12 +85,26 @@ public class Status : MonoBehaviour
             potCount = LoadData.loadedPot;
             currentMap = LoadData.loadedMap;
             playerClass = LoadData.loadedClass;
+            if(currentMap=="Forest")
+            {
+                gameObject.transform.position = new Vector3(-8, -2, 0);
+            }
+            else if(currentMap=="IceCave")
+            {
+                gameObject.transform.position= new Vector3(205,-1,0); 
+            }
+            else if(currentMap=="Infernum")
+            {
+
+            }
         }
         else
         {
             maxHealth = 5;
             maxPots = 3;
             health = maxHealth;
+            currentMap = "Forest";
+            gameObject.transform.position = new Vector3(-8, -2, 0);
         }
     }
 
@@ -95,15 +113,25 @@ public class Status : MonoBehaviour
         if (playerClass == "Rogue" || playerClass == "Knight")
         {
             damage = 4;
+            if(playerClass=="Rogue")
+            {
+                skillDamage = 2;
+                skillCD = 5;
+            }
+            if(playerClass=="Knight")
+            {
+                //knight info
+            }
         }
         else if (playerClass == "Archer" || playerClass == "Wizard")
         {
             damage = 3;
+            skillDamage = 20;
+            skillCD = 100;
         }
 
         attackSpeed = 1.5f;
         potCount = 0;
-        currentMap = "IceCave";
     }
 
     void CheckMap()
@@ -179,6 +207,7 @@ public class Status : MonoBehaviour
         LabelUpdate();
         PotCountControl();
         HealthControl();
+        CheckMap();
     }
 
 
@@ -196,11 +225,68 @@ public class Status : MonoBehaviour
         if(collision.gameObject.tag=="Ice")
         {
             health -= 1;
+            Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "IceGround")
         {
-            health -= 5;
+            health = 0;
         }
+        
+        if (collision.gameObject.tag=="EnemyKnife")
+        {
+            health -= 1;
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "EnemySpear")
+        {
+            health -= 1;
+        }
+        if (collision.gameObject.tag == "EnemyBite")
+        {
+            health -= 2;
+        }
+        if (collision.gameObject.tag == "EnemyRock")
+        {
+            health -= 2;
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "EnemyThorn")
+        {
+            health -= 1;
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "EnemyIce")
+        {
+            health -= 1;
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Gate1")
+        {
+            currentMap = "IceCave";
+            SaveData.saveData();
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Gate2")
+        {
+            currentMap = "Infernum";
+            SaveData.saveData();
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Gate3")
+        {
+            PlayerPrefs.SetInt("GameEnd", 1);
+            PlayerPrefs.SetInt("ThisGameEnd", 1);
+            StartMenu.deathOnTotal += StartMenu.deathOnGame;
+            PlayerPrefs.SetInt("TotalDeath", StartMenu.deathOnTotal);
+            PlayerPrefs.Save();
+            GameOverCanvas.SetActive(true);
+        }
+        if (collision.gameObject.tag == "Key")
+        {
+            Destroy(BossDoor);
+            Destroy(collision.gameObject);
+        }
+
     }
 
 }
