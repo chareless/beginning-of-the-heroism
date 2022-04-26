@@ -40,7 +40,7 @@ public class Actions : MonoBehaviour
         {
             if (Mathf.Approximately(rigidbody.velocity.y, 0))
             {
-                jump = 6.25f;
+                jump = 9.5f;
                 rigidbody.AddForce(transform.up * jump, ForceMode2D.Impulse);
                 jump = 0;
             }
@@ -155,7 +155,7 @@ public class Actions : MonoBehaviour
     {
         if (Mathf.Approximately(rigidbody.velocity.y, 0))
         {
-            jump = 6.25f;
+            jump = 9.5f;
             rigidbody.AddForce(transform.up * jump, ForceMode2D.Impulse);
             jump = 0f;
         }

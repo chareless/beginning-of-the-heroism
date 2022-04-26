@@ -22,7 +22,7 @@ public class Status : MonoBehaviour
     public Text attackSpeedText;
     public Text classText;
     public Text mapText;
-    public Image healthBar;
+    public GameObject[] healthBars;
     public static string playerClass;
     public static string currentMap;
     public static int maxHealth;
@@ -95,7 +95,7 @@ public class Status : MonoBehaviour
             }
             else if(currentMap=="Infernum")
             {
-
+                gameObject.transform.position = new Vector3(470, -30, 0);
             }
         }
         else
@@ -103,8 +103,8 @@ public class Status : MonoBehaviour
             maxHealth = 5;
             maxPots = 3;
             health = maxHealth;
-            currentMap = "Forest";
-            gameObject.transform.position = new Vector3(-8, -2, 0);
+            currentMap = "Infernum";
+            gameObject.transform.position = new Vector3(470, -30, 0);
         }
     }
 
@@ -194,10 +194,19 @@ public class Status : MonoBehaviour
         else if(health>=maxHealth)
         {
             health=maxHealth;
+            for(int i=0;i<maxHealth;i++)
+            {
+                healthBars[i].SetActive(true);
+            }
+            
         }
         else
         {
-            healthBar.fillAmount = (float)health / (float)maxHealth;
+            for(int i=0;i<health;i++)
+            {
+                healthBars[i].SetActive(false);
+            }
+           
         }
     }
 
@@ -231,7 +240,11 @@ public class Status : MonoBehaviour
         {
             health = 0;
         }
-        
+        if(collision.gameObject.tag=="IceSlime")
+        {
+            health -= 1;
+        }
+
         if (collision.gameObject.tag=="EnemyKnife")
         {
             health -= 1;
@@ -285,6 +298,19 @@ public class Status : MonoBehaviour
         {
             Destroy(BossDoor);
             Destroy(collision.gameObject);
+        }
+
+        if(collision.gameObject.tag=="Lava")
+        {
+            health = 0;
+        }
+        if(collision.gameObject.tag=="Fireball")
+        {
+            health -= 2;
+        }
+        if(collision.gameObject.tag=="Saw")
+        {
+            health = 0;
         }
 
     }

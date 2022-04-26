@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     public float beklemeSayac;
     public float rotate;
     Vector3 velocity;
-    public float bulletForce = 20f;
+    public float bulletForce;
     public Transform attackR;
     public Transform attackL;
     public int attackType;

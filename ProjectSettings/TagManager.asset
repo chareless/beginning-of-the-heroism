@@ -37,6 +37,9 @@ TagManager:
   - WizardSkill
   - ArcherSkill
   - KnightSkill
+  - Lava
+  - Saw
+  - Fireball
   layers:
   - Default
   - TransparentFX
