@@ -40,6 +40,7 @@ TagManager:
   - Lava
   - Saw
   - Fireball
+  - Platform
   layers:
   - Default
   - TransparentFX

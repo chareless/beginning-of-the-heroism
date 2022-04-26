@@ -33,6 +33,7 @@ public class Status : MonoBehaviour
     public static float skillCD;
     public static int potCount;
     public static float attackSpeed;
+    public static bool jumpable;
     void Start()
     {
         CheckLoadGame();
@@ -219,10 +220,23 @@ public class Status : MonoBehaviour
         CheckMap();
     }
 
-
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag=="Platform")
+        {
+            jumpable= false;
+            transform.parent= null;
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag=="Poison")
+        if(collision.gameObject.tag=="Platform")
+        {
+            jumpable = true;
+            transform.parent = collision.transform;
+        }
+       
+        if (collision.gameObject.tag=="Poison")
         {
             health = 0;
         }

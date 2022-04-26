@@ -8,8 +8,9 @@ public class LavaShooter : MonoBehaviour
     public Transform[] downShootPoint;
     public Transform[] upShootPoint;
     public static float bulletForce = 17f;
-    public float sayac = 3;
     public int fireType;
+    public float timer;
+    public float mainTimer;
     void Start()
     {
         
@@ -18,8 +19,8 @@ public class LavaShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sayac -= Time.deltaTime;
-        if (sayac <= 0)
+        timer -= Time.deltaTime;
+        if (timer <= 0)
         {
             if(fireType==1)
             {
@@ -29,7 +30,7 @@ public class LavaShooter : MonoBehaviour
                     Rigidbody2D rgbr = lava.GetComponent<Rigidbody2D>();
                     rgbr.AddForce(downShootPoint[i].up * bulletForce, ForceMode2D.Impulse);
                     Destroy(lava, 4f);
-                    sayac = 7;
+                    timer = mainTimer;
                 }
             }
             else if(fireType==2)
@@ -40,7 +41,7 @@ public class LavaShooter : MonoBehaviour
                     Rigidbody2D rgbr = lava.GetComponent<Rigidbody2D>();
                     rgbr.AddForce(upShootPoint[i].up * bulletForce, ForceMode2D.Impulse);
                     Destroy(lava, 4f);
-                    sayac = 7;
+                    timer = mainTimer;
                 }
             }
         }

@@ -153,7 +153,7 @@ public class Actions : MonoBehaviour
 
     public void Jump()
     {
-        if (Mathf.Approximately(rigidbody.velocity.y, 0))
+        if (Mathf.Approximately(rigidbody.velocity.y, 0) || Status.jumpable==true)
         {
             jump = 9.5f;
             rigidbody.AddForce(transform.up * jump, ForceMode2D.Impulse);
