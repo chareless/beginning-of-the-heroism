@@ -79,6 +79,7 @@ public class Actions : MonoBehaviour
         {
             Rogue.transform.rotation = Quaternion.Euler(0, rotate, 0);
             sword.transform.rotation= Quaternion.Euler(0, rotate, 0);
+            shooter.transform.rotation = Quaternion.Euler(rotate, 0, rotate);
         }
         else if (Status.playerClass == "Wizard")
         {
@@ -108,6 +109,7 @@ public class Actions : MonoBehaviour
         if (Status.playerClass == "Rogue")
         {
             sword.transform.position = Rogue.transform.position + new Vector3(0.85f, -0.85f, 0);
+            shooter.transform.position = Rogue.transform.position + new Vector3(0.95f, -0.75f, 0);
         }
         if (Status.playerClass == "Knight")
         {
@@ -134,6 +136,7 @@ public class Actions : MonoBehaviour
         if (Status.playerClass == "Rogue")
         {
             sword.transform.position = Rogue.transform.position + new Vector3(-0.95f, -0.85f, 0);
+            shooter.transform.position = Rogue.transform.position + new Vector3(-0.95f, -0.75f, 0);
         }
         if (Status.playerClass == "Knight")
         {
@@ -228,7 +231,7 @@ public class Actions : MonoBehaviour
             {
                 GameObject bulletr = Instantiate(skillRogue, shooter.transform.position, shooter.transform.rotation);
                 Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
-                rgbr.AddForce(shooter.transform.right * bulletForce*50, ForceMode2D.Impulse);
+                rgbr.AddForce(shooter.transform.right * bulletForce, ForceMode2D.Impulse);
                 Destroy(bulletr, 2f);
             }
             else if(Status.playerClass=="Wizard")
