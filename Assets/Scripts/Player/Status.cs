@@ -195,20 +195,22 @@ public class Status : MonoBehaviour
         else if(health>=maxHealth)
         {
             health=maxHealth;
-            for(int i=0;i<maxHealth;i++)
+        }
+
+
+        for(int i=0;i<maxHealth;i++)
+        {
+            if(i<health)
             {
                 healthBars[i].SetActive(true);
             }
-            
-        }
-        else
-        {
-            for(int i=0;i<health;i++)
+            else
             {
                 healthBars[i].SetActive(false);
             }
-           
+            
         }
+
     }
 
 
