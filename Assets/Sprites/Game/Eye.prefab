@@ -103,7 +103,7 @@ MonoBehaviour:
   health: 0
   enemyType: 
   pot: {fileID: 0}
-  throwable: {fileID: 0}
+  throwable: {fileID: 598322088346320184, guid: 2b15df95578d4654198a489a3d179b1e, type: 3}
   attackObj: {fileID: 0}
   Door1: {fileID: 0}
   Door2: {fileID: 0}
@@ -112,7 +112,7 @@ MonoBehaviour:
   attackSayac: 0
   beklemeSayac: 0
   rotate: 0
-  bulletForce: 20
+  bulletForce: 50
   attackR: {fileID: 4464201017221616945}
   attackL: {fileID: 0}
   attackType: 0
@@ -161,7 +161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426390996712944811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.135, y: 0, z: 0}
+  m_LocalPosition: {x: -0.1528, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 728665134396471019}

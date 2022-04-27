@@ -141,7 +141,7 @@ MonoBehaviour:
   health: 0
   enemyType: 
   pot: {fileID: 0}
-  throwable: {fileID: 0}
+  throwable: {fileID: 8245908302599495301, guid: c64b542a1a7636a41b16deff049fd397, type: 3}
   attackObj: {fileID: 0}
   Door1: {fileID: 0}
   Door2: {fileID: 0}

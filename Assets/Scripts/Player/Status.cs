@@ -15,6 +15,8 @@ public class Status : MonoBehaviour
     public GameObject map3;
     public GameObject GameOverCanvas;
     public GameObject BossDoor;
+    public GameObject CDCanvas;
+    public Button skillButton;
     public Text potText;
     public Text potTextGame;
     public Text damageText;
@@ -22,6 +24,7 @@ public class Status : MonoBehaviour
     public Text attackSpeedText;
     public Text classText;
     public Text mapText;
+    public Text cdText;
     public GameObject[] healthBars;
     public static string playerClass;
     public static string currentMap;
@@ -31,9 +34,11 @@ public class Status : MonoBehaviour
     public static int damage;
     public static int skillDamage;
     public static float skillCD;
+    public static float skillTimer;
     public static int potCount;
     public static float attackSpeed;
     public static bool jumpable;
+    public static bool skillUsed;
     void Start()
     {
         CheckLoadGame();
@@ -104,8 +109,8 @@ public class Status : MonoBehaviour
             maxHealth = 5;
             maxPots = 3;
             health = maxHealth;
-            currentMap = "Infernum";
-            gameObject.transform.position = new Vector3(470, -30, 0);
+            currentMap = "Forest";
+            gameObject.transform.position = new Vector3(-8, -2, 0);
         }
     }
 
@@ -113,11 +118,11 @@ public class Status : MonoBehaviour
     {
         if (playerClass == "Rogue" || playerClass == "Knight")
         {
-            damage = 4;
+            damage = 5;
             if(playerClass=="Rogue")
             {
-                skillDamage = 2;
-                skillCD = 5;
+                skillDamage = 5;
+                skillCD = 3;
             }
             if(playerClass=="Knight")
             {
@@ -126,13 +131,14 @@ public class Status : MonoBehaviour
         }
         else if (playerClass == "Archer" || playerClass == "Wizard")
         {
-            damage = 3;
-            skillDamage = 20;
-            skillCD = 100;
+            damage = 5;
+            skillDamage = 30;
+            skillCD = 25;
         }
 
         attackSpeed = 1.5f;
         potCount = 0;
+        skillTimer = 0;
     }
 
     void CheckMap()
@@ -213,6 +219,26 @@ public class Status : MonoBehaviour
 
     }
 
+    public void SkillCDCount()
+    {
+        if (skillUsed == true)
+        {
+            skillTimer -= Time.deltaTime;
+            if (skillTimer <= 0)
+            {
+                cdText.text = "";
+                skillButton.interactable = true;
+                skillUsed = false;
+                CDCanvas.SetActive(false);
+            }
+            else
+            {
+                CDCanvas.SetActive(true);
+                cdText.text = skillTimer.ToString("N0", CultureInfo.CreateSpecificCulture("en-US")); ;
+                skillButton.interactable = false;
+            }
+        }
+    }
 
     void Update()
     {
@@ -220,6 +246,7 @@ public class Status : MonoBehaviour
         PotCountControl();
         HealthControl();
         CheckMap();
+        SkillCDCount();
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -328,7 +355,21 @@ public class Status : MonoBehaviour
         {
             health = 0;
         }
-
+        if(collision.gameObject.tag=="Laser")
+        {
+            health -= 2;
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "EnemyFire")
+        {
+            health -= 1;
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "SoulShot")
+        {
+            health -= 1;
+            Destroy(collision.gameObject);
+        }
     }
 
 }

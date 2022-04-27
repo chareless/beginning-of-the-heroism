@@ -80,8 +80,7 @@ public class Enemy : MonoBehaviour
 }
         else if(gameObject.tag=="ForestBoss")
         {
-            //health = 100;
-            health = 10;
+            health = 100;
         }
         else if(gameObject.tag=="Kobold")
         {
@@ -214,6 +213,26 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+        else if(gameObject.tag=="Eye" || gameObject.tag=="Soul")
+        {
+            attackSayac -= Time.deltaTime;
+            if (attackSayac <= 0)
+            {
+                GameObject bulletr = Instantiate(throwable, attackR.transform.position, throwable.transform.rotation);
+                Rigidbody2D rgbr = bulletr.GetComponentInChildren<Rigidbody2D>();
+                rgbr.AddForce(attackR.transform.right * -bulletForce, ForceMode2D.Impulse);
+                if(gameObject.tag=="Eye")
+                {
+                    Destroy(bulletr, 0.2f);
+                    attackSayac = 2f;
+                }
+                else if(gameObject.tag=="Soul")
+                {
+                    Destroy(bulletr, 0.5f);
+                    attackSayac = 2f;
+                }
+            }
+        }
         else if(gameObject.tag=="IceSlime" || gameObject.tag=="FireSlime")
         {
             attackSayac -= Time.deltaTime;
@@ -321,7 +340,6 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "ArcherSkill")
         {
             GetDamage(Status.skillDamage);
-            Destroy(collision.gameObject);
         }
 
         if (collision.gameObject.tag == "KnightSkill")

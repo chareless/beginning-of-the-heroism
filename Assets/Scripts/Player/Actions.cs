@@ -14,6 +14,10 @@ public class Actions : MonoBehaviour
     public GameObject shooter;
     public GameObject arrow;
     public GameObject magic;
+    public GameObject skillRogue;
+    public GameObject skillWizard;
+    public GameObject skillArcher;
+    public GameObject skillKnight;
     public static float jump;
     public static int rotate;
     public float shootTimer;
@@ -24,6 +28,8 @@ public class Actions : MonoBehaviour
     public static float speedKey = 6f;
     public static float yatay;
     Vector3 velocity;
+
+    
     void Start()
     {
         Application.targetFrameRate = StartMenu.maxFPS;
@@ -155,7 +161,7 @@ public class Actions : MonoBehaviour
     {
         if (Mathf.Approximately(rigidbody.velocity.y, 0) || Status.jumpable==true)
         {
-            jump = 9.5f;
+            jump = 31f;
             rigidbody.AddForce(transform.up * jump, ForceMode2D.Impulse);
             jump = 0f;
         }
@@ -213,6 +219,44 @@ public class Actions : MonoBehaviour
             Status.health = Status.maxHealth;
         }
     }
+
+    public void UseSkill()
+    {
+        if(Status.skillTimer<=0)
+        {
+            if(Status.playerClass=="Rogue")
+            {
+                GameObject bulletr = Instantiate(skillRogue, shooter.transform.position, shooter.transform.rotation);
+                Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
+                rgbr.AddForce(shooter.transform.right * bulletForce*50, ForceMode2D.Impulse);
+                Destroy(bulletr, 2f);
+            }
+            else if(Status.playerClass=="Wizard")
+            {
+                GameObject bulletr = Instantiate(skillWizard, shooter.transform.position, shooter.transform.rotation);
+                Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
+                rgbr.AddForce(shooter.transform.right * bulletForce*50, ForceMode2D.Impulse);
+                Destroy(bulletr, 2f);
+            }
+            else if(Status.playerClass=="Archer")
+            {
+                GameObject bulletr = Instantiate(skillArcher, shooter.transform.position, shooter.transform.rotation);
+                Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
+                rgbr.AddForce(shooter.transform.right * bulletForce*50, ForceMode2D.Impulse);
+                Destroy(bulletr, 2f);
+            }
+            else if(Status.playerClass=="Knight")
+            {
+
+            }
+
+
+            Status.skillTimer = Status.skillCD;
+            Status.skillUsed = true;
+        }
+    }
+
+
     void Update()
     {
         GetAnimator();

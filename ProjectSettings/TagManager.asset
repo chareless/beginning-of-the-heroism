@@ -45,6 +45,9 @@ TagManager:
   - Imp
   - FireSlime
   - Eye
+  - Laser
+  - SoulShot
+  - EnemyFire
   layers:
   - Default
   - TransparentFX
