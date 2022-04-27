@@ -35,14 +35,12 @@ public class LavaShooter : MonoBehaviour
             }
             else if(fireType==2)
             {
-                for (int i = 0; i < upShootPoint.Length; i++)
-                {
-                    GameObject lava = Instantiate(fireball, upShootPoint[i].transform);
-                    Rigidbody2D rgbr = lava.GetComponent<Rigidbody2D>();
-                    rgbr.AddForce(upShootPoint[i].up * bulletForce, ForceMode2D.Impulse);
-                    Destroy(lava, 4f);
-                    timer = mainTimer;
-                }
+                int random= Random.Range(0, upShootPoint.Length+1);
+                GameObject lava = Instantiate(fireball, upShootPoint[random].transform);
+                Rigidbody2D rgbr = lava.GetComponent<Rigidbody2D>();
+                rgbr.AddForce(upShootPoint[random].up * bulletForce, ForceMode2D.Impulse);
+                Destroy(lava, 1.25f);
+                timer = mainTimer;
             }
         }
     }

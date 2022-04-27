@@ -124,6 +124,34 @@ public class Enemy : MonoBehaviour
             health = 25;
             attackSayac = 2f;
         }
+        else if(gameObject.tag=="Soul")
+        {
+            health = 3;
+            attackSayac = 2f;
+        }
+        else if(gameObject.tag=="FireSlime")
+        {
+            health = 25;
+            attackSayac = 2f;
+        }
+        else if(gameObject.tag=="Eye")
+        {
+            health = 100;
+            attackSayac = 2f;
+        }
+        else if(gameObject.tag=="Imp")
+        {
+            health = 20;
+            attackSayac = 2f;
+            beklemeSayac = 0.5f;
+            attackType = Random.Range(0, 2);
+            if (Status.playerClass == "Wizard" || Status.playerClass == "Archer")
+            {
+                attackType = 1;
+            }
+        }
+
+
         enemyType = gameObject.tag;
     }
 
@@ -186,7 +214,7 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-        else if(gameObject.tag=="IceSlime")
+        else if(gameObject.tag=="IceSlime" || gameObject.tag=="FireSlime")
         {
             attackSayac -= Time.deltaTime;
             if (attackSayac <= 0)
@@ -203,7 +231,7 @@ public class Enemy : MonoBehaviour
             }
         }
         else if(gameObject.tag == "Goblin" || gameObject.tag == "PossesedGoblin" || gameObject.tag== "Kobold" || gameObject.tag == "IceGolem" ||
-                gameObject.tag == "Spider" || gameObject.tag == "SpiderRider" || gameObject.tag == "Warg" || gameObject.tag == "WargRider")
+                gameObject.tag == "Spider" || gameObject.tag == "SpiderRider" || gameObject.tag == "Warg" || gameObject.tag == "WargRider" || gameObject.tag=="Imp")
         {
             attackSayac -= Time.deltaTime;
             if(attackSayac<=0)
@@ -222,7 +250,7 @@ public class Enemy : MonoBehaviour
                                 attackSayac = 3f;
                                 beklemeSayac = 0.5f;
                             }
-                            else if (gameObject.tag == "Goblin" || gameObject.tag == "PossesedGoblin" || gameObject.tag == "Kobold")
+                            else if (gameObject.tag == "Goblin" || gameObject.tag == "PossesedGoblin" || gameObject.tag == "Kobold" || gameObject.tag=="Imp")
                             {
                                 attackSayac = 2f;
                                 beklemeSayac = 0.5f;

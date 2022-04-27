@@ -41,6 +41,10 @@ TagManager:
   - Saw
   - Fireball
   - Platform
+  - Soul
+  - Imp
+  - FireSlime
+  - Eye
   layers:
   - Default
   - TransparentFX
