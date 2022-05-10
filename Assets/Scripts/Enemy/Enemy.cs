@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public Animator animator;
+
     Rigidbody2D enemyRb;
     public float speed;
     public float hold;
@@ -252,12 +254,15 @@ public class Enemy : MonoBehaviour
         else if(gameObject.tag == "Goblin" || gameObject.tag == "PossesedGoblin" || gameObject.tag== "Kobold" || gameObject.tag == "IceGolem" ||
                 gameObject.tag == "Spider" || gameObject.tag == "SpiderRider" || gameObject.tag == "Warg" || gameObject.tag == "WargRider" || gameObject.tag=="Imp")
         {
+            
             attackSayac -= Time.deltaTime;
             if(attackSayac<=0)
             {
+                animator.SetFloat("attackDeger", 10);
                 if (attackType == 0)
                 {
                     attackObj.SetActive(true);
+                   
                     if (attackObj.activeInHierarchy == true)
                     {
                         beklemeSayac -= Time.deltaTime;
@@ -271,6 +276,7 @@ public class Enemy : MonoBehaviour
                             }
                             else if (gameObject.tag == "Goblin" || gameObject.tag == "PossesedGoblin" || gameObject.tag == "Kobold" || gameObject.tag=="Imp")
                             {
+                                
                                 attackSayac = 2f;
                                 beklemeSayac = 0.5f;
                             }

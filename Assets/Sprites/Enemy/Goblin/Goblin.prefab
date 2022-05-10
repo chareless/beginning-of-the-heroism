@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3173078591547297672}
   - component: {fileID: 538339178074365912}
   - component: {fileID: -6908271972470927337}
+  - component: {fileID: 3724608282986631935}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Goblin
@@ -144,6 +145,9 @@ MonoBehaviour:
   pot: {fileID: 0}
   throwable: {fileID: 7870810820837340694, guid: 71916ae05bb75b84e9b9f407e91f7cee, type: 3}
   attackObj: {fileID: 9004419559616449990}
+  Door1: {fileID: 0}
+  Door2: {fileID: 0}
+  Door3: {fileID: 0}
   moveSayac: 0
   attackSayac: 0
   beklemeSayac: 0
@@ -152,6 +156,25 @@ MonoBehaviour:
   attackR: {fileID: 8415741161591918324}
   attackL: {fileID: 0}
   attackType: 0
+--- !u!95 &3724608282986631935
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7546195017876303519}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 175fed1574733764b82beebcdf50214c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8834253541326011522
 GameObject:
   m_ObjectHideFlags: 0
