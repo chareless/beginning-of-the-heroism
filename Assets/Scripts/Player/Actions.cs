@@ -158,6 +158,7 @@ public class Actions : MonoBehaviour
         animator.SetFloat("state", 10f);
         animator.SetFloat("left", 0f);
         animator.SetFloat("right", 0f);
+        animator.SetFloat("skill",0f);
     }
 
     public void Jump()
@@ -225,8 +226,11 @@ public class Actions : MonoBehaviour
 
     public void UseSkill()
     {
+               
         if(Status.skillTimer<=0)
         {
+                animator.SetFloat("skill", 10f);
+                animator.SetFloat("state",0f); 
             if(Status.playerClass=="Rogue")
             {
                 GameObject bulletr = Instantiate(skillRogue, shooter.transform.position, shooter.transform.rotation);
@@ -243,6 +247,7 @@ public class Actions : MonoBehaviour
             }
             else if(Status.playerClass=="Archer")
             {
+                
                 GameObject bulletr = Instantiate(skillArcher, shooter.transform.position, shooter.transform.rotation);
                 Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
                 rgbr.AddForce(shooter.transform.right * bulletForce*50, ForceMode2D.Impulse);
