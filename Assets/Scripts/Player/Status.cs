@@ -91,6 +91,7 @@ public class Status : MonoBehaviour
             potCount = LoadData.loadedPot;
             currentMap = LoadData.loadedMap;
             playerClass = LoadData.loadedClass;
+
             if(currentMap=="Forest")
             {
                 gameObject.transform.position = new Vector3(-8, -2, 0);
@@ -106,12 +107,13 @@ public class Status : MonoBehaviour
         }
         else
         {
-            maxHealth = 5;
-            maxPots = 3;
+            potCount = 0;
             health = maxHealth;
             currentMap = "Forest";
             gameObject.transform.position = new Vector3(-8, -2, 0);
         }
+        maxHealth = 5;
+        maxPots = 3;
     }
 
     void playerStats()
@@ -137,7 +139,6 @@ public class Status : MonoBehaviour
         }
 
         attackSpeed = 1.5f;
-        potCount = 0;
         skillTimer = 0;
     }
 
