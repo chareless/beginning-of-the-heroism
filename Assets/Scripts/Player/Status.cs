@@ -85,6 +85,8 @@ public class Status : MonoBehaviour
 
     void CheckLoadGame()
     {
+        maxHealth = 5;
+        maxPots = 3;
         if (StartMenu.isContinue == true)
         {
             health = LoadData.loadedHealth;
@@ -112,8 +114,7 @@ public class Status : MonoBehaviour
             currentMap = "Forest";
             gameObject.transform.position = new Vector3(-8, -2, 0);
         }
-        maxHealth = 5;
-        maxPots = 3;
+        
     }
 
     void playerStats()
