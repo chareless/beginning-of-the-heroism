@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: -181320264005541373}
   - component: {fileID: 254876819459629511}
   - component: {fileID: 3198708920512690609}
+  - component: {fileID: 2748052162371357577}
   m_Layer: 0
   m_Name: Kobold
   m_TagString: Kobold
@@ -166,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d272d4960c59e419b1af0eb7488b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   speed: 0
   hold: 0
   sayac: 2
@@ -174,6 +176,9 @@ MonoBehaviour:
   pot: {fileID: 0}
   throwable: {fileID: 7870810820837340694, guid: 71916ae05bb75b84e9b9f407e91f7cee, type: 3}
   attackObj: {fileID: 9187829065858336237}
+  Door1: {fileID: 0}
+  Door2: {fileID: 0}
+  Door3: {fileID: 0}
   moveSayac: 0
   attackSayac: 0
   beklemeSayac: 0
@@ -182,6 +187,25 @@ MonoBehaviour:
   attackR: {fileID: 8366499968099420008}
   attackL: {fileID: 0}
   attackType: 0
+--- !u!95 &2748052162371357577
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8235200456447105254}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1321ddfdf508cd640bb870ae4801900f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1743297325041300659
 PrefabInstance:
   m_ObjectHideFlags: 0

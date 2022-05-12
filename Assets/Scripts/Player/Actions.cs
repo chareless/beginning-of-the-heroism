@@ -262,6 +262,7 @@ public class Actions : MonoBehaviour
             Status.skillTimer = Status.skillCD;
             Status.skillUsed = true;
         }
+        
     }
 
 

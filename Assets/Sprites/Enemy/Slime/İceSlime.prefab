@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -342232197835476449}
   - component: {fileID: 1340805389993978671}
   - component: {fileID: 6894761155406695469}
+  - component: {fileID: -3975422109153256179}
   m_Layer: 0
   m_Name: "\u0130ceSlime"
   m_TagString: IceSlime
@@ -120,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d272d4960c59e419b1af0eb7488b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   speed: 0
   hold: 0
   sayac: 2
@@ -155,6 +157,25 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0040631867, y: 0.073703974}
   m_Size: {x: 0.31153512, y: 0.16994141}
   m_Direction: 1
+--- !u!95 &-3975422109153256179
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275606121832871187}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 292253ec1514107479b3e2d05f511a49, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2769926736824783366
 GameObject:
   m_ObjectHideFlags: 0
