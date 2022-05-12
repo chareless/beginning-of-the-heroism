@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1994831876210207439}
   - component: {fileID: 2473802217574252052}
   - component: {fileID: 2470797911746579984}
+  - component: {fileID: -164580926946643146}
   m_Layer: 0
   m_Name: Spider-Rider
   m_TagString: SpiderRider
@@ -161,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d272d4960c59e419b1af0eb7488b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   speed: 0
   hold: 0
   sayac: 2
@@ -169,6 +171,9 @@ MonoBehaviour:
   pot: {fileID: 0}
   throwable: {fileID: 0}
   attackObj: {fileID: 6392498780938198349}
+  Door1: {fileID: 0}
+  Door2: {fileID: 0}
+  Door3: {fileID: 0}
   moveSayac: 0
   attackSayac: 0
   beklemeSayac: 0
@@ -177,6 +182,25 @@ MonoBehaviour:
   attackR: {fileID: 0}
   attackL: {fileID: 0}
   attackType: 0
+--- !u!95 &-164580926946643146
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8967183855999722254}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0e1022a4393963940b6349d104f2055d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &181020933639314671
 PrefabInstance:
   m_ObjectHideFlags: 0

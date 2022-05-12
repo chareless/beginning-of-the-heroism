@@ -258,9 +258,11 @@ public class Enemy : MonoBehaviour
             attackSayac -= Time.deltaTime;
             if(attackSayac<=0)
             {
-                animator.SetFloat("attackDeger", 10);
+                
                 if (attackType == 0)
                 {
+                    animator.SetFloat("attackDeger", 10);
+                    animator.SetFloat("attackDegerUzak", 0);
                     attackObj.SetActive(true);
                    
                     if (attackObj.activeInHierarchy == true)
@@ -276,7 +278,7 @@ public class Enemy : MonoBehaviour
                             }
                             else if (gameObject.tag == "Goblin" || gameObject.tag == "PossesedGoblin" || gameObject.tag == "Kobold" || gameObject.tag=="Imp")
                             {
-                                
+                                animator.SetFloat("attackDeger", 0);
                                 attackSayac = 2f;
                                 beklemeSayac = 0.5f;
                             }
@@ -290,6 +292,8 @@ public class Enemy : MonoBehaviour
                 }
                 else if (attackType == 1)
                 {
+                    animator.SetFloat("attackDegerUzak", 10);
+                    animator.SetFloat("attackDeger", 0);
                     GameObject bullet = Instantiate(throwable, attackR.transform.position, throwable.transform.rotation);
                     Rigidbody2D rgb = bullet.GetComponentInChildren<Rigidbody2D>();
                     rgb.AddForce(attackR.transform.right * bulletForce, ForceMode2D.Impulse);

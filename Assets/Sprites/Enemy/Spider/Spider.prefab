@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8841252000176591217}
   - component: {fileID: 7430542934776797840}
   - component: {fileID: 4407273834565946726}
+  - component: {fileID: -5134207852827323390}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Spider
@@ -162,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d272d4960c59e419b1af0eb7488b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   speed: 0
   hold: 0
   sayac: 2
@@ -170,6 +172,9 @@ MonoBehaviour:
   pot: {fileID: 0}
   throwable: {fileID: 0}
   attackObj: {fileID: 2974722230204417266}
+  Door1: {fileID: 0}
+  Door2: {fileID: 0}
+  Door3: {fileID: 0}
   moveSayac: 0
   attackSayac: 0
   beklemeSayac: 0
@@ -178,6 +183,25 @@ MonoBehaviour:
   attackR: {fileID: 0}
   attackL: {fileID: 0}
   attackType: 0
+--- !u!95 &-5134207852827323390
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8841252000176591220}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 472f9121ff50c464da9ea63abdd34318, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &8322085082454132048
 PrefabInstance:
   m_ObjectHideFlags: 0
