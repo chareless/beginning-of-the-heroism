@@ -261,8 +261,7 @@ public class Enemy : MonoBehaviour
                 
                 if (attackType == 0)
                 {
-                    animator.SetFloat("attackDeger", 10);
-                    animator.SetFloat("attackDegerUzak", 0);
+                   
                     attackObj.SetActive(true);
                    
                     if (attackObj.activeInHierarchy == true)
