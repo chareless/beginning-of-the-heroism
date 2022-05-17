@@ -39,6 +39,8 @@ public class Status : MonoBehaviour
     public static float attackSpeed;
     public static bool jumpable;
     public static bool skillUsed;
+    public AudioClip dieSound;
+    AudioSource sourceAudio;
     void Start()
     {
         CheckLoadGame();
@@ -46,6 +48,7 @@ public class Status : MonoBehaviour
         playerStats();
         CheckMap();
         SaveData.saveData();
+        sourceAudio = gameObject.GetComponent<AudioSource>();
     }
 
     void SpawnPlayer()
@@ -78,8 +81,8 @@ public class Status : MonoBehaviour
         {
             playerClass = "Rogue";
             Destroy(Knight);
-            Destroy(Wizard);
             Destroy(Archer);
+            Destroy(Wizard);
         }
     }
 
@@ -111,8 +114,8 @@ public class Status : MonoBehaviour
         {
             potCount = 0;
             health = maxHealth;
-            currentMap = "Forest";
-            gameObject.transform.position = new Vector3(-8, -2, 0);
+            currentMap = "IceCave";
+            gameObject.transform.position= new Vector3(205,-1,0); 
         }
         
     }
@@ -198,6 +201,7 @@ public class Status : MonoBehaviour
         if(health<=0)
         {
             health = 0;
+            sourceAudio.PlayOneShot(dieSound);
             GameOverCanvas.SetActive(true);
         }
         else if(health>=maxHealth)

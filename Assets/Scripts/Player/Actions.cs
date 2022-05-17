@@ -30,11 +30,27 @@ public class Actions : MonoBehaviour
     public static float yatay;
     Vector3 velocity;
 
+    public AudioClip magicSound;
+    public AudioClip archerSound;
+    public AudioClip rogueSound;
+
+    public AudioClip knightSound;
+    public AudioClip magicSkillSound;
+    public AudioClip archerSkillSound;
+    public AudioClip rogueSkillSound;
+    public AudioClip knightSkillSound;
+
+    public AudioClip jumpSound;
+
+    public AudioClip walkSound;
+    AudioSource sourceAudio;
+
     
     void Start()
     {
         Application.targetFrameRate = StartMenu.maxFPS;
         rigidbody = GetComponent<Rigidbody2D>();
+        sourceAudio = gameObject.GetComponent<AudioSource>();
     }
 
     void ButtonControl()
@@ -100,6 +116,7 @@ public class Actions : MonoBehaviour
     }
     public void RightMovement()
     {
+        sourceAudio.Play();
         animator.SetFloat("left", 0f);
         animator.SetFloat("right", 10f);
         animator.SetFloat("attack", 0f);
@@ -129,6 +146,7 @@ public class Actions : MonoBehaviour
 
     public void LeftMovement()
     {
+        sourceAudio.Play();
         animator.SetFloat("right", 10f);
         animator.SetFloat("attack", 0f);
         animator.SetFloat("state", 0f);
@@ -157,6 +175,7 @@ public class Actions : MonoBehaviour
 
     public void StopMovement()
     {
+        sourceAudio.Stop();
         yatay = 0;
         animator.SetFloat("state", 10f);
         animator.SetFloat("left", 0f);
@@ -168,6 +187,7 @@ public class Actions : MonoBehaviour
     {
         if (Mathf.Approximately(rigidbody.velocity.y, 0) || Status.jumpable==true)
         {
+            sourceAudio.PlayOneShot(jumpSound);
             jump = 31f;
             rigidbody.AddForce(transform.up * jump, ForceMode2D.Impulse);
             jump = 0f;
@@ -179,11 +199,24 @@ public class Actions : MonoBehaviour
         {
             if (shootTimer <= 0)
             {
-                animator.SetFloat("state", 0f);
-                animator.SetFloat("attack", 10f);
-                animator.SetFloat("skill",0f);
-                sword.SetActive(true);
-                delay = 0.5f;
+                if(Status.playerClass == "Rogue"){
+                     sourceAudio.PlayOneShot(rogueSound);
+                     animator.SetFloat("state", 0f);
+                     animator.SetFloat("attack", 10f);
+                     animator.SetFloat("skill",0f);
+                     sword.SetActive(true);
+                     delay = 0.5f;
+                }
+                 if(Status.playerClass == "Knight"){
+                     sourceAudio.PlayOneShot(knightSound);
+                     animator.SetFloat("state", 0f);
+                     animator.SetFloat("attack", 10f);
+                     animator.SetFloat("skill",0f);
+                     sword.SetActive(true);
+                     delay = 0.5f;
+                }
+
+               
             }
 
         }
@@ -191,6 +224,7 @@ public class Actions : MonoBehaviour
         {
             if (shootTimer <= 0)
             {
+                sourceAudio.PlayOneShot(archerSound);
                 animator.SetFloat("state", 0f);
                 animator.SetFloat("attack", 10f);
                 animator.SetFloat("skill",0f);
@@ -207,6 +241,7 @@ public class Actions : MonoBehaviour
         {
             if (shootTimer <= 0)
             {
+                sourceAudio.PlayOneShot(magicSound);
                 animator.SetFloat("state", 0f);
                 animator.SetFloat("attack", 10f);
                 animator.SetFloat("skill",0f);
@@ -240,7 +275,7 @@ public class Actions : MonoBehaviour
            
             if(Status.playerClass=="Rogue")
             {
-            
+                sourceAudio.PlayOneShot(rogueSkillSound);
                 
                 GameObject bulletr = Instantiate(skillRogue, shooter.transform.position, shooter.transform.rotation);
                 Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
@@ -250,7 +285,7 @@ public class Actions : MonoBehaviour
             }
             else if(Status.playerClass=="Wizard")
             {
-                
+                sourceAudio.PlayOneShot(magicSkillSound);
                 GameObject bulletr = Instantiate(skillWizard, shooter.transform.position, shooter.transform.rotation);
                 Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
                 rgbr.AddForce(shooter.transform.right * bulletForce*50, ForceMode2D.Impulse);
@@ -258,7 +293,7 @@ public class Actions : MonoBehaviour
             }
             else if(Status.playerClass=="Archer")
             {
-              
+                sourceAudio.PlayOneShot(archerSkillSound);
                 GameObject bulletr = Instantiate(skillArcher, shooter.transform.position, shooter.transform.rotation);
                 Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
                 rgbr.AddForce(shooter.transform.right * bulletForce*50, ForceMode2D.Impulse);
@@ -266,7 +301,7 @@ public class Actions : MonoBehaviour
             }
             else if(Status.playerClass=="Knight")
             {
-
+                sourceAudio.PlayOneShot(knightSkillSound);
             }
 
 

@@ -261,7 +261,9 @@ public class Enemy : MonoBehaviour
                 
                 if (attackType == 0)
                 {
-                   
+                    animator.SetFloat("attackDegerUzak", 0.0f);
+                    animator.SetFloat("attackDeger", 10.0f);
+                    animator.SetFloat("state",0.0f);
                     attackObj.SetActive(true);
                    
                     if (attackObj.activeInHierarchy == true)
@@ -272,12 +274,14 @@ public class Enemy : MonoBehaviour
                             attackObj.SetActive(false);
                             if (gameObject.tag == "Spider" || gameObject.tag == "SpiderRider" || gameObject.tag == "Warg" || gameObject.tag == "WargRider")
                             {
+                                 animator.SetFloat("attackDeger", 10.0f);
+                                 animator.SetFloat("state",0.0f);
                                 attackSayac = 3f;
                                 beklemeSayac = 0.5f;
                             }
                             else if (gameObject.tag == "Goblin" || gameObject.tag == "PossesedGoblin" || gameObject.tag == "Kobold" || gameObject.tag=="Imp")
                             {
-                                animator.SetFloat("attackDeger", 0);
+                                
                                 attackSayac = 2f;
                                 beklemeSayac = 0.5f;
                             }
@@ -291,8 +295,9 @@ public class Enemy : MonoBehaviour
                 }
                 else if (attackType == 1)
                 {
-                    animator.SetFloat("attackDegerUzak", 10);
-                    animator.SetFloat("attackDeger", 0);
+                    animator.SetFloat("attackDegerUzak", 10.0f);
+                    animator.SetFloat("attackDeger", 0.0f);
+                    animator.SetFloat("state",0.0f);
                     GameObject bullet = Instantiate(throwable, attackR.transform.position, throwable.transform.rotation);
                     Rigidbody2D rgb = bullet.GetComponentInChildren<Rigidbody2D>();
                     rgb.AddForce(attackR.transform.right * bulletForce, ForceMode2D.Impulse);
@@ -305,6 +310,7 @@ public class Enemy : MonoBehaviour
                     {
                         Destroy(bullet, 0.25f);
                         attackSayac = 2f;
+                        
                     }
                 }
             }
