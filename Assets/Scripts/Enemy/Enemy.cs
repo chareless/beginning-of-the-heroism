@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
     public Transform attackR;
     public Transform attackL;
     public int attackType;
+    public bool shooted;
+    public float shootDelay = 0.5f;
     void Start()
     {
         CreateEnemy();
@@ -39,7 +41,7 @@ public class Enemy : MonoBehaviour
         {
             health = 10;
             attackSayac = 2f;
-            beklemeSayac = 0.5f;
+            beklemeSayac = 1f;
             attackType =Random.Range(0,2);
             if(Status.playerClass=="Wizard"|| Status.playerClass=="Archer")
             {
@@ -50,7 +52,7 @@ public class Enemy : MonoBehaviour
         {
             health = 10;
             attackSayac = 2f;
-            beklemeSayac = 0.5f;
+            beklemeSayac =1f;
             attackType = Random.Range(0, 2);
             if (Status.playerClass == "Wizard" || Status.playerClass == "Archer")
             {
@@ -61,14 +63,14 @@ public class Enemy : MonoBehaviour
         {
             health = 20;
             attackSayac = 3f;
-            beklemeSayac = 0.5f;
+            beklemeSayac = 1f;
             attackType = 0;
         }
         else if(gameObject.tag=="SpiderRider")
         {
             health = 20;
             attackSayac = 3f;
-            beklemeSayac = 0.5f;
+            beklemeSayac = 1f;
             attackType = 0;
         }
         else if(gameObject.tag=="Log")
@@ -88,7 +90,7 @@ public class Enemy : MonoBehaviour
         {
             health = 10;
             attackSayac = 2f;
-            beklemeSayac = 0.5f;
+            beklemeSayac = 1f;
             attackType = Random.Range(0, 2);
             if (Status.playerClass == "Wizard" || Status.playerClass == "Archer")
             {
@@ -99,14 +101,14 @@ public class Enemy : MonoBehaviour
         {
             health = 20;
             attackSayac = 3f;
-            beklemeSayac = 0.5f;
+            beklemeSayac = 1f;
             attackType = 0;
         }
         else if(gameObject.tag=="WargRider")
         {
             health = 20;
             attackSayac = 3f;
-            beklemeSayac = 0.5f;
+            beklemeSayac = 1f;
             attackType = 0;
         }
         else if(gameObject.tag=="IceGolem")
@@ -144,7 +146,7 @@ public class Enemy : MonoBehaviour
         {
             health = 20;
             attackSayac = 2f;
-            beklemeSayac = 0.5f;
+            beklemeSayac = 1f;
             attackType = Random.Range(0, 2);
             if (Status.playerClass == "Wizard" || Status.playerClass == "Archer")
             {
@@ -177,7 +179,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    
     void Attack()
     {
         if(gameObject.tag=="Log")
@@ -254,14 +256,11 @@ public class Enemy : MonoBehaviour
         else if(gameObject.tag == "Goblin" || gameObject.tag == "PossesedGoblin" || gameObject.tag== "Kobold" || gameObject.tag == "IceGolem" ||
                 gameObject.tag == "Spider" || gameObject.tag == "SpiderRider" || gameObject.tag == "Warg" || gameObject.tag == "WargRider" || gameObject.tag=="Imp")
         {
-            
             attackSayac -= Time.deltaTime;
             if(attackSayac<=0)
             {
-                
                 if (attackType == 0)
                 {
-                    animator.SetFloat("attackDegerUzak", 0.0f);
                     animator.SetFloat("attackDeger", 10.0f);
                     animator.SetFloat("state",0.0f);
                     attackObj.SetActive(true);
@@ -272,51 +271,66 @@ public class Enemy : MonoBehaviour
                         if (beklemeSayac <= 0)
                         {
                             attackObj.SetActive(false);
+                            animator.SetFloat("attackDeger", 0.0f);
+                            animator.SetFloat("state", 10.0f);
+                            beklemeSayac = 1f;
                             if (gameObject.tag == "Spider" || gameObject.tag == "SpiderRider" || gameObject.tag == "Warg" || gameObject.tag == "WargRider")
                             {
-                                 animator.SetFloat("attackDeger", 10.0f);
-                                 animator.SetFloat("state",0.0f);
                                 attackSayac = 3f;
-                                beklemeSayac = 0.5f;
                             }
                             else if (gameObject.tag == "Goblin" || gameObject.tag == "PossesedGoblin" || gameObject.tag == "Kobold" || gameObject.tag=="Imp")
                             {
-                                
                                 attackSayac = 2f;
-                                beklemeSayac = 0.5f;
                             }
                             else if(gameObject.tag=="IceGolem")
                             {
                                 attackSayac = 4f;
-                                beklemeSayac = 1f;
                             }
                         }
                     }
                 }
                 else if (attackType == 1)
                 {
+                    shooted = true;
                     animator.SetFloat("attackDegerUzak", 10.0f);
-                    animator.SetFloat("attackDeger", 0.0f);
                     animator.SetFloat("state",0.0f);
-                    GameObject bullet = Instantiate(throwable, attackR.transform.position, throwable.transform.rotation);
-                    Rigidbody2D rgb = bullet.GetComponentInChildren<Rigidbody2D>();
-                    rgb.AddForce(attackR.transform.right * bulletForce, ForceMode2D.Impulse);
-                    if(gameObject.tag=="IceGolem")
+                    shootDelay-=Time.deltaTime;
+                    if(shootDelay<=0)
                     {
-                        Destroy(bullet, 1f);
-                        attackSayac = 4f;
-                    }
-                    else
-                    {
-                        Destroy(bullet, 0.25f);
-                        attackSayac = 2f;
-                        
+                        GameObject bullet = Instantiate(throwable, attackR.transform.position, throwable.transform.rotation);
+                        Rigidbody2D rgb = bullet.GetComponentInChildren<Rigidbody2D>();
+                        rgb.AddForce(attackR.transform.right * bulletForce, ForceMode2D.Impulse);
+                        shootDelay = 0.5f;
+                        if (gameObject.tag == "IceGolem")
+                        {
+                            Destroy(bullet, 1f);
+                            attackSayac = 4f;
+                        }
+                        else
+                        {
+                            Destroy(bullet, 0.25f);
+                            attackSayac = 2f;
+                        }
                     }
                 }
             }
         }
     }
 
+    void RangeAnimDelayControl()
+    {
+        if (shooted == true)
+        {
+            beklemeSayac -= Time.deltaTime;
+            if (beklemeSayac <= 0)
+            {
+                animator.SetFloat("attackDegerUzak", 0.0f);
+                animator.SetFloat("state", 10.0f);
+                beklemeSayac = 1f;
+                shooted = false;
+            }
+        }
+    }
     void Move()
     {
         transform.position += new Vector3(speed, 0)*Time.deltaTime*hold;
@@ -326,6 +340,7 @@ public class Enemy : MonoBehaviour
         HealthControl();
         Move();
         Attack();
+        RangeAnimDelayControl();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

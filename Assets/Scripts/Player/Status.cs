@@ -114,8 +114,15 @@ public class Status : MonoBehaviour
         {
             potCount = 0;
             health = maxHealth;
-            currentMap = "IceCave";
-            gameObject.transform.position= new Vector3(205,-1,0); 
+
+            currentMap = "Forest";
+            gameObject.transform.position= new Vector3(-8, -2, 0);
+
+            //currentMap = "IceCave";
+           // gameObject.transform.position = new Vector3(205, -1, 0);
+
+            //currentMap = "Infernum";
+            //gameObject.transform.position = new Vector3(470, -30, 0);
         }
         
     }
@@ -138,7 +145,7 @@ public class Status : MonoBehaviour
         else if (playerClass == "Archer" || playerClass == "Wizard")
         {
             damage = 5;
-            skillDamage = 30;
+            skillDamage = 40;
             skillCD = 25;
         }
 
