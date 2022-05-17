@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -2844815229919643730}
   - component: {fileID: 7701660605639033050}
   - component: {fileID: 945217980916511678}
+  - component: {fileID: -7817153475512803449}
   m_Layer: 0
   m_Name: Warg-Rider
   m_TagString: WargRider
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 0.85, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!70 &-2844815229919643730
@@ -135,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d272d4960c59e419b1af0eb7488b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   speed: 0
   hold: 0
   sayac: 2
@@ -143,6 +145,9 @@ MonoBehaviour:
   pot: {fileID: 0}
   throwable: {fileID: 0}
   attackObj: {fileID: 1814245611216290255}
+  Door1: {fileID: 0}
+  Door2: {fileID: 0}
+  Door3: {fileID: 0}
   moveSayac: 0
   attackSayac: 0
   beklemeSayac: 0
@@ -151,6 +156,27 @@ MonoBehaviour:
   attackR: {fileID: 0}
   attackL: {fileID: 0}
   attackType: 0
+  shooted: 0
+  shootDelay: 0.5
+--- !u!95 &-7817153475512803449
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7746527840093754179}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f06e9f66a9ff57b40bfb5ec155cad056, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &4834847934808883309
 PrefabInstance:
   m_ObjectHideFlags: 0

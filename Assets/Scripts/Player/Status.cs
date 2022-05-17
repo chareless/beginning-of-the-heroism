@@ -40,6 +40,22 @@ public class Status : MonoBehaviour
     public static bool jumpable;
     public static bool skillUsed;
     public AudioClip dieSound;
+
+    public AudioClip knifeHit;
+    public AudioClip spearHit;
+
+    public AudioClip byteHit;
+
+    public AudioClip rockHit;
+    public AudioClip iceHit;
+    public AudioClip thornHit;
+    public AudioClip gate1;
+    public AudioClip gate2;
+    public AudioClip gate3;
+
+    public AudioClip poison;
+
+    public AudioClip pot;
     AudioSource sourceAudio;
     void Start()
     {
@@ -118,7 +134,7 @@ public class Status : MonoBehaviour
             currentMap = "Forest";
             gameObject.transform.position= new Vector3(-8, -2, 0);
 
-            //currentMap = "IceCave";
+           // currentMap = "IceCave";
            // gameObject.transform.position = new Vector3(205, -1, 0);
 
             //currentMap = "Infernum";
@@ -280,6 +296,7 @@ public class Status : MonoBehaviour
        
         if (collision.gameObject.tag=="Poison")
         {
+            sourceAudio.PlayOneShot(poison);
             health = 0;
         }
         if(collision.gameObject.tag=="Pot")
@@ -298,51 +315,62 @@ public class Status : MonoBehaviour
         }
         if(collision.gameObject.tag=="IceSlime")
         {
+            sourceAudio.PlayOneShot(iceHit);
             health -= 1;
         }
 
         if (collision.gameObject.tag=="EnemyKnife")
         {
+            sourceAudio.PlayOneShot(knifeHit);
             health -= 1;
             Destroy(collision.gameObject);
+
         }
         if (collision.gameObject.tag == "EnemySpear")
         {
+            sourceAudio.PlayOneShot(spearHit);
             health -= 1;
         }
         if (collision.gameObject.tag == "EnemyBite")
         {
+            sourceAudio.PlayOneShot(byteHit);
             health -= 2;
         }
         if (collision.gameObject.tag == "EnemyRock")
         {
+            sourceAudio.PlayOneShot(rockHit);
             health -= 2;
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "EnemyThorn")
         {
+            sourceAudio.PlayOneShot(thornHit);
             health -= 1;
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "EnemyIce")
         {
+            sourceAudio.PlayOneShot(iceHit);
             health -= 1;
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "Gate1")
         {
+            sourceAudio.PlayOneShot(gate1);
             currentMap = "IceCave";
             SaveData.saveData();
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "Gate2")
         {
+            sourceAudio.PlayOneShot(gate2);
             currentMap = "Infernum";
             SaveData.saveData();
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "Gate3")
         {
+            sourceAudio.PlayOneShot(gate3);
             PlayerPrefs.SetInt("GameEnd", 1);
             PlayerPrefs.SetInt("ThisGameEnd", 1);
             StartMenu.deathOnTotal += StartMenu.deathOnGame;

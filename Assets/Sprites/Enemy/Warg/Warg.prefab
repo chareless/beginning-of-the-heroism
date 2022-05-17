@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1138333912390752281}
   - component: {fileID: 891386008848247001}
   - component: {fileID: 8919609229086062570}
+  - component: {fileID: 3594379394420310481}
   m_Layer: 0
   m_Name: Warg
   m_TagString: Warg
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 0.85, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1138333912390752281
@@ -98,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d272d4960c59e419b1af0eb7488b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   speed: 0
   hold: 0
   sayac: 2
@@ -106,6 +108,9 @@ MonoBehaviour:
   pot: {fileID: 0}
   throwable: {fileID: 0}
   attackObj: {fileID: 4709114941665385749}
+  Door1: {fileID: 0}
+  Door2: {fileID: 0}
+  Door3: {fileID: 0}
   moveSayac: 0
   attackSayac: 0
   beklemeSayac: 0
@@ -114,6 +119,8 @@ MonoBehaviour:
   attackR: {fileID: 0}
   attackL: {fileID: 0}
   attackType: 0
+  shooted: 0
+  shootDelay: 0.5
 --- !u!50 &891386008848247001
 Rigidbody2D:
   serializedVersion: 4
@@ -151,6 +158,25 @@ CapsuleCollider2D:
   m_Offset: {x: -0.013106616, y: -0.0555133}
   m_Size: {x: 0.6017461, y: 0.479645}
   m_Direction: 1
+--- !u!95 &3594379394420310481
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2584127318985122528}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d8baaf9af4230fc4e8b460c9a3b526f9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1976949700262649015
 PrefabInstance:
   m_ObjectHideFlags: 0
