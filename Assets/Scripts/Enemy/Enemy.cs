@@ -242,6 +242,8 @@ public class Enemy : MonoBehaviour
             attackSayac -= Time.deltaTime;
             if (attackSayac <= 0)
             {
+                animator.SetFloat("attackDeger", 10.0f);
+                animator.SetFloat("state",0.0f);
                 GameObject bulletr = Instantiate(throwable, attackR.transform.position, throwable.transform.rotation);
                 GameObject bulletl = Instantiate(throwable, attackL.transform.position, throwable.transform.rotation);
                 Rigidbody2D rgbr = bulletr.GetComponentInChildren<Rigidbody2D>();
@@ -252,6 +254,13 @@ public class Enemy : MonoBehaviour
                 Destroy(bulletl, 0.4f);
                 attackSayac = 2f;
             }
+            beklemeSayac -= Time.deltaTime;
+                        if (beklemeSayac <= 0)
+                        {
+                animator.SetFloat("attackDeger", 0.0f);
+                animator.SetFloat("state",10.0f);
+                beklemeSayac = 1f;
+                        }
         }
         else if(gameObject.tag == "Goblin" || gameObject.tag == "PossesedGoblin" || gameObject.tag== "Kobold" || gameObject.tag == "IceGolem" ||
                 gameObject.tag == "Spider" || gameObject.tag == "SpiderRider" || gameObject.tag == "Warg" || gameObject.tag == "WargRider" || gameObject.tag=="Imp")
@@ -379,3 +388,21 @@ public class Enemy : MonoBehaviour
 
     }
 }
+/* Yakın vuruş animasyonu için gerekenler 
+// animator.SetFloat("attackDeger",10.0f);
+  //  animator.SetFloat("attackDegerUzak",0.0f);
+   // animator.SetFloat("state",0.0f);
+
+   */
+   /* Uzak vuruş animasyonu için gerekenler 
+// animator.SetFloat("attackDeger",0.0f);
+  //  animator.SetFloat("attackDegerUzak",10.0f);
+   // animator.SetFloat("state",0.0f);
+
+   */
+   /* State animasyonu için gerekenler 
+// animator.SetFloat("attackDeger",0.0f);
+  //  animator.SetFloat("attackDegerUzak",0.0f);
+   // animator.SetFloat("state",10.0f);
+
+   */

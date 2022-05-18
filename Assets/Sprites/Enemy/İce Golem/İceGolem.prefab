@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -4935505466900896821}
   - component: {fileID: 6731482966447028477}
   - component: {fileID: 5872681267161947840}
+  - component: {fileID: -433336797945684024}
   m_Layer: 0
   m_Name: "\u0130ceGolem"
   m_TagString: IceGolem
@@ -84,7 +85,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &-4935505466900896821
@@ -136,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d272d4960c59e419b1af0eb7488b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   speed: 0
   hold: 0
   sayac: 2
@@ -144,6 +146,9 @@ MonoBehaviour:
   pot: {fileID: 0}
   throwable: {fileID: 2547425802254601936, guid: a77a1dc9ed087bd4eb6d0ea8e0988828, type: 3}
   attackObj: {fileID: 6979125139779603994}
+  Door1: {fileID: 0}
+  Door2: {fileID: 0}
+  Door3: {fileID: 0}
   moveSayac: 0
   attackSayac: 0
   beklemeSayac: 0
@@ -152,6 +157,27 @@ MonoBehaviour:
   attackR: {fileID: 289756097714542717}
   attackL: {fileID: 0}
   attackType: 0
+  shooted: 0
+  shootDelay: 0.5
+--- !u!95 &-433336797945684024
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798397918522071530}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a4fd75877463d745947bcaccdc0707c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4387095010579851718
 GameObject:
   m_ObjectHideFlags: 0
