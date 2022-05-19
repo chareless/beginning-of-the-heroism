@@ -106,7 +106,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 17e9e163dfc01b146a4fc4c87b5185ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 18277c12ae644d14e877a2020fa5acec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d272d4960c59e419b1af0eb7488b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   speed: 0
   hold: 0
   sayac: 2
@@ -202,6 +203,11 @@ MonoBehaviour:
   enemyType: 
   pot: {fileID: 0}
   throwable: {fileID: 7494928468114733181, guid: 50aaf0f2f10757a4a8f3d296dc1f12dd, type: 3}
+  attackObj: {fileID: 0}
+  trapObj: {fileID: 0}
+  Door1: {fileID: 0}
+  Door2: {fileID: 0}
+  Door3: {fileID: 0}
   moveSayac: 0
   attackSayac: 0
   beklemeSayac: 0
@@ -209,6 +215,11 @@ MonoBehaviour:
   bulletForce: 20
   attackR: {fileID: 2754551524018056876}
   attackL: {fileID: 3707756045355519366}
+  attackType: 0
+  shooted: 0
+  shootDelay: 0.5
+  bossTypeControl: 0
+  bossAttackDelay: 0.3
 --- !u!1 &8415556429302648620
 GameObject:
   m_ObjectHideFlags: 0

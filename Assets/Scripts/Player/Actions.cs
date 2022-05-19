@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Actions : MonoBehaviour
 {
-    public float skillDelay;
     public Animator animator;
-
     public GameObject Rogue;
     public GameObject Archer;
     public GameObject Wizard;
@@ -267,21 +265,18 @@ public class Actions : MonoBehaviour
 
     public void UseSkill()
     {
-         
-        if(Status.skillTimer<=0)
+        if (Status.skillTimer<=0)
         {
-            skillDelay = 0.5f;
+            delay = 0.5f;
             animator.SetFloat("skill",10f);  
            
             if(Status.playerClass=="Rogue")
             {
                 sourceAudio.PlayOneShot(rogueSkillSound);
-                
                 GameObject bulletr = Instantiate(skillRogue, shooter.transform.position, shooter.transform.rotation);
                 Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
                 rgbr.AddForce(shooter.transform.right * bulletForce, ForceMode2D.Impulse);
                 Destroy(bulletr, 2f);
-                
             }
             else if(Status.playerClass=="Wizard")
             {
@@ -303,14 +298,9 @@ public class Actions : MonoBehaviour
             {
                 sourceAudio.PlayOneShot(knightSkillSound);
             }
-
-
             Status.skillTimer = Status.skillCD;
             Status.skillUsed = true;
-          
         }
-         //animator.SetFloat("skill",0f); 
-        
     }
 
 
@@ -321,33 +311,21 @@ public class Actions : MonoBehaviour
         ButtonControl();
 
         shootTimer -= Time.deltaTime;
-        skillDelay -= Time.deltaTime;
-        if(skillDelay <=0)
-        {
-            animator.SetFloat("state",10f);
-            animator.SetFloat("skill",0f);
-        }
         if (Status.playerClass == "Rogue" || Status.playerClass == "Knight")
         {
-            
             if (sword.activeInHierarchy == true)
             {
                 delay -= Time.deltaTime;
                 if (delay <= 0)
-                
                 {
                     sword.SetActive(false);
                     shootTimer = Status.attackSpeed;
                     animator.SetFloat("state", 10f);
                     animator.SetFloat("attack", 0f);
-                    animator.SetFloat("skill",0f);
-                    
                 }
             }
-
         }
         if (Status.playerClass == "Wizard" || Status.playerClass == "Archer")
-
         {
             shootTimer -= Time.deltaTime;
             delay -= Time.deltaTime;
@@ -355,8 +333,7 @@ public class Actions : MonoBehaviour
             {
                 animator.SetFloat("state", 10f);
                 animator.SetFloat("attack", 0f);
-                animator.SetFloat("skill",0f);
-                
+                animator.SetFloat("skill", 0f);
             }
         }
     }

@@ -14,7 +14,6 @@ public class Status : MonoBehaviour
     public GameObject map2;
     public GameObject map3;
     public GameObject GameOverCanvas;
-    public GameObject BossDoor;
     public GameObject CDCanvas;
     public Button skillButton;
     public Text potText;
@@ -95,9 +94,9 @@ public class Status : MonoBehaviour
         }
         else
         {
-            playerClass = "Rogue";
+            playerClass = "Archer";
             Destroy(Knight);
-            Destroy(Archer);
+            Destroy(Rogue);
             Destroy(Wizard);
         }
     }
@@ -131,14 +130,14 @@ public class Status : MonoBehaviour
             potCount = 0;
             health = maxHealth;
 
-            currentMap = "Forest";
-            gameObject.transform.position= new Vector3(-8, -2, 0);
+            //currentMap = "Forest";
+           // gameObject.transform.position= new Vector3(-8, -2, 0);
 
             //currentMap = "IceCave";
             //gameObject.transform.position = new Vector3(205, -1, 0);
 
-            //currentMap = "Infernum";
-            //gameObject.transform.position = new Vector3(470, -30, 0);
+            currentMap = "Infernum";
+            gameObject.transform.position = new Vector3(470, -30, 0);
         }
         
     }
@@ -373,17 +372,9 @@ public class Status : MonoBehaviour
             sourceAudio.PlayOneShot(gate3);
             PlayerPrefs.SetInt("GameEnd", 1);
             PlayerPrefs.SetInt("ThisGameEnd", 1);
-            StartMenu.deathOnTotal += StartMenu.deathOnGame;
-            PlayerPrefs.SetInt("TotalDeath", StartMenu.deathOnTotal);
             PlayerPrefs.Save();
             GameOverCanvas.SetActive(true);
         }
-        if (collision.gameObject.tag == "Key")
-        {
-            Destroy(BossDoor);
-            Destroy(collision.gameObject);
-        }
-
         if(collision.gameObject.tag=="Lava")
         {
             health = 0;

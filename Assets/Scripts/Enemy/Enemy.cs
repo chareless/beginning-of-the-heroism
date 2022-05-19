@@ -569,21 +569,3 @@ public class Enemy : MonoBehaviour
 
     }
 }
-/* Yakın vuruş animasyonu için gerekenler 
-// animator.SetFloat("attackDeger",10.0f);
-  //  animator.SetFloat("attackDegerUzak",0.0f);
-   // animator.SetFloat("state",0.0f);
-
-   */
-   /* Uzak vuruş animasyonu için gerekenler 
-// animator.SetFloat("attackDeger",0.0f);
-  //  animator.SetFloat("attackDegerUzak",10.0f);
-   // animator.SetFloat("state",0.0f);
-
-   */
-   /* State animasyonu için gerekenler 
-// animator.SetFloat("attackDeger",0.0f);
-  //  animator.SetFloat("attackDegerUzak",0.0f);
-   // animator.SetFloat("state",10.0f);
-
-   */

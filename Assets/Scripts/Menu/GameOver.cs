@@ -19,9 +19,6 @@ public class GameOver : MonoBehaviour
             RandomMessage();
             gameEndText.text = deathText;
             gameEndText.color = Color.red;
-            StartMenu.deathOnGame++;
-            PlayerPrefs.SetInt("GameDeath", StartMenu.deathOnGame);
-            PlayerPrefs.Save();
         }
         else
         {

@@ -7,14 +7,12 @@ using UnityEngine.UI;
 public class StartMenu : MonoBehaviour
 {
     public GameObject StartMenuCanvas;
+    public GameObject EndText;
     public GameObject OptionsCanvas;
     public GameObject CreditsCanvas;
     public GameObject SelectCharacterCanvas;
     public GameObject ButtonContinue;
     public GameObject GameEndCanvas;
-    public Button button30fps;
-    public Button button60fps;
-    public Button button75fps;
     public Button SelectRogue;
     public Button SelectWizard;
     public Button SelectArcher;
@@ -22,9 +20,6 @@ public class StartMenu : MonoBehaviour
     public Button continueButton;
     public Text gameVersion;
     public Text volumeText;
-    public Text fpsText;
-    public Text deathText;
-    public Text deathTotalText;
     public Slider volumeSlider;
     public AudioSource ClickSound;
     public AudioClip nextClick;
@@ -33,17 +28,13 @@ public class StartMenu : MonoBehaviour
     public static float volumeValue;
     public static bool isContinue;
     public AudioSource anaMenu;
-    public static int deathOnGame;
-    public static int deathOnTotal;
 
     public void Start()
     {
         LoadValues();
         ThisGameEndControl();
         gameVersion.text = Application.version;
-        fpsText.text = Application.targetFrameRate.ToString();
-        deathText.text=deathOnGame.ToString();
-        deathTotalText.text=deathOnTotal.ToString();
+        Application.targetFrameRate = maxFPS;
     }
 
     public void PlayNextClick()
@@ -127,6 +118,7 @@ public class StartMenu : MonoBehaviour
     {
         StartMenuCanvas.SetActive(false);
         CreditsCanvas.SetActive(true);
+        EndText.transform.position = new Vector3(0, -10f, 0);
         PlayNextClick();
     }
     public void OptionsButton()
@@ -189,62 +181,6 @@ public class StartMenu : MonoBehaviour
         AudioListener.volume = volumeValue;
     }
 
-    public void Button30()
-    {
-        maxFPS = 30;
-        button30fps.interactable = false;
-        button60fps.interactable = true;
-        button75fps.interactable = true;
-        PlayNextClick();
-    }
-    public void Button60()
-    {
-        maxFPS = 60;
-        button30fps.interactable = true;
-        button60fps.interactable = false;
-        button75fps.interactable = true;
-        PlayNextClick();
-    }
-
-    public void Button75()
-    {
-        maxFPS = 75;
-        button30fps.interactable = true;
-        button60fps.interactable = true;
-        button75fps.interactable = false;
-        PlayNextClick();
-    }
-
-    public void FPSControl()
-    {
-        if (PlayerPrefs.GetInt("MaxFPS") != 0)
-        {
-            maxFPS = PlayerPrefs.GetInt("MaxFPS");
-        }
-
-        Application.targetFrameRate = maxFPS;
-        fpsText.text = Application.targetFrameRate.ToString();
-
-        if(Application.targetFrameRate == 30)
-        {
-            button30fps.interactable = false;
-            button60fps.interactable = true;
-            button75fps.interactable = true;
-        }
-        if (Application.targetFrameRate == 60)
-        {
-            button30fps.interactable = true;
-            button60fps.interactable = false;
-            button75fps.interactable = true;
-        }
-        if (Application.targetFrameRate == 75)
-        {
-            button30fps.interactable = true;
-            button60fps.interactable = true;
-            button75fps.interactable = false;
-        }
-    }
-
     public void GameEndControl()
     {
         if(PlayerPrefs.GetInt("GameEnd")==1)
@@ -273,8 +209,6 @@ public class StartMenu : MonoBehaviour
 
         VolumeControl();
 
-        FPSControl();
-
         ContinueControl();
 
         GameEndControl();
@@ -283,6 +217,6 @@ public class StartMenu : MonoBehaviour
 
     void Update()
     {
-        
+        EndText.transform.position += new Vector3(0, 0.5f, 0) * Time.deltaTime;
     }
 }
