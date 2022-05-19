@@ -48,6 +48,10 @@ TagManager:
   - Laser
   - SoulShot
   - EnemyFire
+  - Boss1Laser
+  - IceBoss
+  - Boss2Trap
+  - FireBoss
   layers:
   - Default
   - TransparentFX

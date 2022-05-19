@@ -131,11 +131,11 @@ public class Status : MonoBehaviour
             potCount = 0;
             health = maxHealth;
 
-            //currentMap = "Forest";
-            //gameObject.transform.position= new Vector3(-8, -2, 0);
+            currentMap = "Forest";
+            gameObject.transform.position= new Vector3(-8, -2, 0);
 
-            currentMap = "IceCave";
-            gameObject.transform.position = new Vector3(205, -1, 0);
+            //currentMap = "IceCave";
+            //gameObject.transform.position = new Vector3(205, -1, 0);
 
             //currentMap = "Infernum";
             //gameObject.transform.position = new Vector3(470, -30, 0);
@@ -410,6 +410,15 @@ public class Status : MonoBehaviour
         {
             health -= 1;
             Destroy(collision.gameObject);
+        }
+        if(collision.gameObject.tag=="Boss1Laser")
+        {
+            health -= 1;
+            Destroy(collision.gameObject);
+        }
+        if(collision.gameObject.tag=="Boss2Trap")
+        {
+            health -= 2;
         }
     }
 

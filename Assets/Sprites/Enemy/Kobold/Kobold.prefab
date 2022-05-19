@@ -187,6 +187,9 @@ MonoBehaviour:
   attackR: {fileID: 8366499968099420008}
   attackL: {fileID: 0}
   attackType: 0
+  shooted: 0
+  shootDelay: 0.5
+  bossTypeControl: 0
 --- !u!95 &2748052162371357577
 Animator:
   serializedVersion: 3
@@ -271,6 +274,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7471707581611209054, guid: 31ca55fe5c4f304489291585e480fe78, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365686872546304447, guid: 31ca55fe5c4f304489291585e480fe78, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
