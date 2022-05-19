@@ -487,8 +487,8 @@ public class Enemy : MonoBehaviour
             attackSayac -= Time.deltaTime;
             if (attackSayac <= 0)
             {
-                    //animator.SetFloat("attackDeger", 10.0f);
-                   // animator.SetFloat("state", 0.0f);
+                    animator.SetFloat("attackDeger", 10.0f);
+                    animator.SetFloat("state", 0.0f);
 
                 beklemeSayac -= Time.deltaTime;
 
@@ -498,8 +498,8 @@ public class Enemy : MonoBehaviour
                     Rigidbody2D rgb = bullet.GetComponentInChildren<Rigidbody2D>();
                     rgb.AddForce(attackR.transform.right * bulletForce, ForceMode2D.Impulse);
                     Destroy(bullet, 1f);
-                    //animator.SetFloat("attackDeger", 0.0f);
-                    //animator.SetFloat("state", 10.0f);
+                    animator.SetFloat("attackDeger", 0.0f);
+                    animator.SetFloat("state", 10.0f);
                     attackSayac = 3f;
                     beklemeSayac = 1f;
                 }

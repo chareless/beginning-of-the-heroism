@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4633017824280964923}
   - component: {fileID: 4633017824280964924}
   - component: {fileID: 4633017824280964925}
+  - component: {fileID: 3564756682683909951}
   m_Layer: 0
   m_Name: Imp
   m_TagString: Imp
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: d6e317a9bd526504c9c5acb679211649, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41699218ce4514e43b23eda924ffcade, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -136,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d272d4960c59e419b1af0eb7488b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   speed: 0
   hold: 0
   sayac: 2
@@ -144,6 +146,7 @@ MonoBehaviour:
   pot: {fileID: 0}
   throwable: {fileID: 658060175626203523, guid: 53751955a7e293d4a8a0fe44bc73e6d2, type: 3}
   attackObj: {fileID: 7302104899529974025}
+  trapObj: {fileID: 0}
   Door1: {fileID: 0}
   Door2: {fileID: 0}
   Door3: {fileID: 0}
@@ -155,6 +158,29 @@ MonoBehaviour:
   attackR: {fileID: 4633017825400043425}
   attackL: {fileID: 0}
   attackType: 0
+  shooted: 0
+  shootDelay: 0.5
+  bossTypeControl: 0
+  bossAttackDelay: 0
+--- !u!95 &3564756682683909951
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4633017824280964896}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 39dffa42a6d64f541bd311ddc6359e03, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4633017825400043426
 GameObject:
   m_ObjectHideFlags: 0

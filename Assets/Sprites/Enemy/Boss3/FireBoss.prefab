@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6790604174339847467}
   - component: {fileID: 6790604174339847466}
   - component: {fileID: 6790604174339847469}
+  - component: {fileID: -2912438702047535890}
   m_Layer: 0
   m_Name: FireBoss
   m_TagString: FireBoss
@@ -232,6 +233,25 @@ MonoBehaviour:
   shootDelay: 0.5
   bossTypeControl: 0
   bossAttackDelay: 0.3
+--- !u!95 &-2912438702047535890
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6790604174339847470}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 440b4be7d00807d4fb4ef7c7c32d8026, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6790604174932073550
 GameObject:
   m_ObjectHideFlags: 0

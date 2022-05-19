@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4639546711306882209}
   - component: {fileID: 8285398482031872484}
   - component: {fileID: 6304583191250865416}
+  - component: {fileID: 2738206046501876730}
   m_Layer: 0
   m_Name: FireSlime
   m_TagString: FireSlime
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d272d4960c59e419b1af0eb7488b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   speed: 0
   hold: 0
   sayac: 2
@@ -107,6 +109,7 @@ MonoBehaviour:
   pot: {fileID: 0}
   throwable: {fileID: 2792766553234330779, guid: 9f7879fb2600bad4e92b034a45565649, type: 3}
   attackObj: {fileID: 0}
+  trapObj: {fileID: 0}
   Door1: {fileID: 0}
   Door2: {fileID: 0}
   Door3: {fileID: 0}
@@ -118,6 +121,10 @@ MonoBehaviour:
   attackR: {fileID: 8688346764034471694}
   attackL: {fileID: 4698530008478818057}
   attackType: 0
+  shooted: 0
+  shootDelay: 0.5
+  bossTypeControl: 0
+  bossAttackDelay: 0
 --- !u!50 &8285398482031872484
 Rigidbody2D:
   serializedVersion: 4
@@ -155,6 +162,25 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0010012237, y: 0.07137067}
   m_Size: {x: 0.26003507, y: 0.1474668}
   m_Direction: 1
+--- !u!95 &2738206046501876730
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2909846564798507966}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c09f503a0c7e684390733cfd089722b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5479830639291214242
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2384061705144683683}
   - component: {fileID: 4490641565765401833}
   - component: {fileID: 2525670835959401256}
+  - component: {fileID: 2703953815848469036}
   m_Layer: 0
   m_Name: TormantedSoul-State
   m_TagString: Soul
@@ -135,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d272d4960c59e419b1af0eb7488b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   speed: 0
   hold: 0
   sayac: 2
@@ -143,6 +145,7 @@ MonoBehaviour:
   pot: {fileID: 0}
   throwable: {fileID: 8245908302599495301, guid: c64b542a1a7636a41b16deff049fd397, type: 3}
   attackObj: {fileID: 0}
+  trapObj: {fileID: 0}
   Door1: {fileID: 0}
   Door2: {fileID: 0}
   Door3: {fileID: 0}
@@ -154,6 +157,29 @@ MonoBehaviour:
   attackR: {fileID: 6571194402709235707}
   attackL: {fileID: 0}
   attackType: 0
+  shooted: 0
+  shootDelay: 0.5
+  bossTypeControl: 0
+  bossAttackDelay: 0
+--- !u!95 &2703953815848469036
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601442311817600501}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 612ce4c8731c628499ae8baae6c50d29, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6140980545709437119
 GameObject:
   m_ObjectHideFlags: 0
