@@ -131,13 +131,13 @@ public class Status : MonoBehaviour
             health = maxHealth;
 
             currentMap = "Forest";
-           gameObject.transform.position= new Vector3(-8, -2, 0);
+            gameObject.transform.position= new Vector3(-8, -2, 0);
 
            // currentMap = "IceCave";
            // gameObject.transform.position = new Vector3(205, -1, 0);
 
             //currentMap = "Infernum";
-           // gameObject.transform.position = new Vector3(470, -30, 0);
+          // gameObject.transform.position = new Vector3(470, -30, 0);
         }
         
     }

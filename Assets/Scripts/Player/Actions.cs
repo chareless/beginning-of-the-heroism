@@ -283,7 +283,7 @@ public class Actions : MonoBehaviour
                 sourceAudio.PlayOneShot(magicSkillSound);
                 GameObject bulletr = Instantiate(skillWizard, shooter.transform.position, shooter.transform.rotation);
                 Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
-                rgbr.AddForce(shooter.transform.right * bulletForce*50, ForceMode2D.Impulse);
+                rgbr.AddForce(shooter.transform.right * bulletForce*500, ForceMode2D.Impulse);
                 Destroy(bulletr, 2f);
             }
             else if(Status.playerClass=="Archer")
@@ -291,7 +291,7 @@ public class Actions : MonoBehaviour
                 sourceAudio.PlayOneShot(archerSkillSound);
                 GameObject bulletr = Instantiate(skillArcher, shooter.transform.position, shooter.transform.rotation);
                 Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
-                rgbr.AddForce(shooter.transform.right * bulletForce*50, ForceMode2D.Impulse);
+                rgbr.AddForce(shooter.transform.right * bulletForce*500, ForceMode2D.Impulse);
                 Destroy(bulletr, 2f);
             }
             else if(Status.playerClass=="Knight")

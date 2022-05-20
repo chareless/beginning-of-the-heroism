@@ -35,7 +35,7 @@ public class LavaShooter : MonoBehaviour
             }
             else if(fireType==2)
             {
-                int random= Random.Range(0, upShootPoint.Length+1);
+                int random= Random.Range(0, upShootPoint.Length);
                 GameObject lava = Instantiate(fireball, upShootPoint[random].transform);
                 Rigidbody2D rgbr = lava.GetComponent<Rigidbody2D>();
                 rgbr.AddForce(upShootPoint[random].up * bulletForce, ForceMode2D.Impulse);
