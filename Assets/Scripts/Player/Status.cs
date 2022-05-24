@@ -51,6 +51,7 @@ public class Status : MonoBehaviour
     public AudioClip gate1;
     public AudioClip gate2;
     public AudioClip gate3;
+    public Animator animator;
 
     public AudioClip poison;
 
@@ -94,11 +95,15 @@ public class Status : MonoBehaviour
         }
         else
         {
-            playerClass = "Archer";
+            playerClass = "Rogue";
             Destroy(Knight);
-            Destroy(Rogue);
+            Destroy(Archer);
             Destroy(Wizard);
         }
+    }
+     void GetAnimator()
+    {
+        animator = GetComponentInChildren<Animator>();
     }
 
     void CheckLoadGame()
@@ -130,14 +135,14 @@ public class Status : MonoBehaviour
             potCount = 0;
             health = maxHealth;
 
-            currentMap = "Forest";
-            gameObject.transform.position= new Vector3(-8, -2, 0);
+            //currentMap = "Forest";
+           // gameObject.transform.position= new Vector3(-8, -2, 0);
 
-           // currentMap = "IceCave";
-           // gameObject.transform.position = new Vector3(205, -1, 0);
+             //currentMap = "IceCave";
+            //gameObject.transform.position = new Vector3(205, -1, 0);
 
-            //currentMap = "Infernum";
-          // gameObject.transform.position = new Vector3(470, -30, 0);
+            currentMap = "Infernum";
+           gameObject.transform.position = new Vector3(470, -30, 0);
         }
         
     }
@@ -222,6 +227,7 @@ public class Status : MonoBehaviour
     {
         if(health<=0)
         {
+            animator.SetFloat("die",10.0f);
             health = 0;
             sourceAudio.PlayOneShot(dieSound);
             GameOverCanvas.SetActive(true);
@@ -270,6 +276,7 @@ public class Status : MonoBehaviour
 
     void Update()
     {
+        GetAnimator();
         LabelUpdate();
         PotCountControl();
         HealthControl();
