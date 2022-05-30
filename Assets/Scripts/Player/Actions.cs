@@ -72,15 +72,15 @@ public class Actions : MonoBehaviour
 
         if (Input.GetKey("h"))
         {
-            animator.SetFloat("jump", 0f);
-            animator.SetFloat("left", 0f);
-            animator.SetFloat("right", 0f);
-            animator.SetFloat("attack", 10f);
             Hit();
         }
         if (Input.GetKey("j"))
         {
             UsePot();
+        }
+        if(Input.GetKey("k"))
+        {
+            UseSkill();
         }
     }
 
@@ -110,6 +110,7 @@ public class Actions : MonoBehaviour
         {
             Knight.transform.rotation = Quaternion.Euler(0, rotate, 0);
             sword.transform.rotation = Quaternion.Euler(0, rotate, 0);
+            shooter.transform.rotation = Quaternion.Euler(rotate, 0, rotate);
         }
     }
     public void RightMovement()
@@ -131,6 +132,7 @@ public class Actions : MonoBehaviour
         if (Status.playerClass == "Knight")
         {
             sword.transform.position = Knight.transform.position + new Vector3(0.85f, -0.85f, 0);
+            shooter.transform.position = Rogue.transform.position + new Vector3(0.95f, -0.75f, 0);
         }
         if (Status.playerClass == "Wizard")
         {
@@ -160,6 +162,7 @@ public class Actions : MonoBehaviour
         if (Status.playerClass == "Knight")
         {
             sword.transform.position = Knight.transform.position + new Vector3(-0.95f, -0.85f, 0);
+            shooter.transform.position = Rogue.transform.position + new Vector3(-0.95f, -0.75f, 0);
         }
         if (Status.playerClass == "Wizard")
         {
@@ -195,28 +198,22 @@ public class Actions : MonoBehaviour
     {
         if (Status.playerClass == "Rogue" || Status.playerClass == "Knight")
         {
-            if (shootTimer <= 0)
+            if (shootTimer <= 0 && sword.activeInHierarchy==false)
             {
-                if(Status.playerClass == "Rogue"){
-                     sourceAudio.PlayOneShot(rogueSound);
-                     animator.SetFloat("state", 0f);
-                     animator.SetFloat("attack", 10f);
-                     animator.SetFloat("skill",0f);
-                     sword.SetActive(true);
-                     delay = 0.5f;
+                if(Status.playerClass == "Rogue")
+                {
+                    sourceAudio.PlayOneShot(rogueSound);
                 }
-                 if(Status.playerClass == "Knight"){
-                     sourceAudio.PlayOneShot(knightSound);
-                     animator.SetFloat("state", 0f);
-                     animator.SetFloat("attack", 10f);
-                     animator.SetFloat("skill",0f);
-                     sword.SetActive(true);
-                     delay = 0.5f;
+                if(Status.playerClass == "Knight")
+                {
+                    sourceAudio.PlayOneShot(knightSound);
                 }
-
-               
+                animator.SetFloat("state", 0f);
+                animator.SetFloat("attack", 10f);
+                animator.SetFloat("skill", 0f);
+                sword.SetActive(true);
+                delay = 0.5f;
             }
-
         }
         if (Status.playerClass == "Archer")
         {
@@ -297,6 +294,10 @@ public class Actions : MonoBehaviour
             else if(Status.playerClass=="Knight")
             {
                 sourceAudio.PlayOneShot(knightSkillSound);
+                GameObject bulletr = Instantiate(skillKnight, shooter.transform.position, shooter.transform.rotation);
+                Rigidbody2D rgbr = bulletr.GetComponent<Rigidbody2D>();
+                rgbr.AddForce(shooter.transform.right * bulletForce * 500, ForceMode2D.Impulse);
+                Destroy(bulletr, 2f);
             }
             Status.skillTimer = Status.skillCD;
             Status.skillUsed = true;
