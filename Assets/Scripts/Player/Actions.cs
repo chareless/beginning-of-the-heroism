@@ -43,6 +43,8 @@ public class Actions : MonoBehaviour
     public AudioClip walkSound;
     AudioSource sourceAudio;
 
+
+
     
     void Start()
     {
@@ -61,7 +63,7 @@ public class Actions : MonoBehaviour
         {
             if (Mathf.Approximately(rigidbody.velocity.y, 0))
             {
-                jump = 9.5f;
+                jump = 31;
                 rigidbody.AddForce(transform.up * jump, ForceMode2D.Impulse);
                 jump = 0;
             }
@@ -115,7 +117,10 @@ public class Actions : MonoBehaviour
     }
     public void RightMovement()
     {
-        sourceAudio.Play();
+        if (Mathf.Approximately(rigidbody.velocity.y, 0))
+        {
+            sourceAudio.Play();
+        }
         animator.SetFloat("left", 0f);
         animator.SetFloat("right", 10f);
         animator.SetFloat("attack", 0f);
@@ -132,7 +137,7 @@ public class Actions : MonoBehaviour
         if (Status.playerClass == "Knight")
         {
             sword.transform.position = Knight.transform.position + new Vector3(0.85f, -0.85f, 0);
-            shooter.transform.position = Rogue.transform.position + new Vector3(0.95f, -0.75f, 0);
+            shooter.transform.position = Knight.transform.position + new Vector3(0.95f, -0.75f, 0);
         }
         if (Status.playerClass == "Wizard")
         {
@@ -146,7 +151,10 @@ public class Actions : MonoBehaviour
 
     public void LeftMovement()
     {
-        sourceAudio.Play();
+        if (Mathf.Approximately(rigidbody.velocity.y, 0))
+        {
+            sourceAudio.Play();
+        }
         animator.SetFloat("right", 10f);
         animator.SetFloat("attack", 0f);
         animator.SetFloat("state", 0f);
@@ -162,7 +170,7 @@ public class Actions : MonoBehaviour
         if (Status.playerClass == "Knight")
         {
             sword.transform.position = Knight.transform.position + new Vector3(-0.95f, -0.85f, 0);
-            shooter.transform.position = Rogue.transform.position + new Vector3(-0.95f, -0.75f, 0);
+            shooter.transform.position = Knight.transform.position + new Vector3(-0.95f, -0.75f, 0);
         }
         if (Status.playerClass == "Wizard")
         {
@@ -314,17 +322,20 @@ public class Actions : MonoBehaviour
         shootTimer -= Time.deltaTime;
         if (Status.playerClass == "Rogue" || Status.playerClass == "Knight")
         {
-            if (sword.activeInHierarchy == true)
+            delay -= Time.deltaTime;
+            if (delay <= 0)
             {
-                delay -= Time.deltaTime;
-                if (delay <= 0)
+                if (sword.activeInHierarchy == true)
                 {
                     sword.SetActive(false);
                     shootTimer = Status.attackSpeed;
-                    animator.SetFloat("state", 10f);
-                    animator.SetFloat("attack", 0f);
                 }
+               
+                animator.SetFloat("state", 10f);
+                animator.SetFloat("attack", 0f);
+                animator.SetFloat("skill", 0f);
             }
+            
         }
         if (Status.playerClass == "Wizard" || Status.playerClass == "Archer")
         {

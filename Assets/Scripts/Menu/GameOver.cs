@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,8 +10,8 @@ public class GameOver : MonoBehaviour
     public float counter = 2;
     public GameObject menuButton;
     public GameObject quitButton;
-    public Text gameEndText;
     public string deathText;
+    public TextMeshProUGUI gameEndText;
 
     void Start()
     {
@@ -52,7 +53,7 @@ public class GameOver : MonoBehaviour
         }
         else if(random==5)
         {
-            deathText = "DEATH IS NOT ESCAPE..";
+            deathText = "DEATH IS NOT AN ESCAPE...";
         }
     }
     public void MenuButton()

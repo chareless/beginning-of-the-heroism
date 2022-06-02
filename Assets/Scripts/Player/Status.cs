@@ -38,6 +38,7 @@ public class Status : MonoBehaviour
     public static float attackSpeed;
     public static bool jumpable;
     public static bool skillUsed;
+    public static bool dead;
     public AudioClip dieSound;
 
     public AudioClip knifeHit;
@@ -51,11 +52,23 @@ public class Status : MonoBehaviour
     public AudioClip gate1;
     public AudioClip gate2;
     public AudioClip gate3;
-    public Animator animator;
 
     public AudioClip poison;
-
     public AudioClip pot;
+
+    public AudioClip lava;
+    public AudioClip fireBall;
+    public AudioClip saw;
+    public AudioClip laserSound;
+    public AudioClip enemyFire;
+    public AudioClip soulShot;
+    public AudioClip boss1Lazer;
+    public AudioClip boss2Trap;
+
+
+
+    public Animator animator;
+
     AudioSource sourceAudio;
     void Start()
     {
@@ -136,13 +149,13 @@ public class Status : MonoBehaviour
             health = maxHealth;
 
             currentMap = "Forest";
-            gameObject.transform.position= new Vector3(-8, -2, 0);
+            gameObject.transform.position = new Vector3(-8, -2, 0);
 
-             //currentMap = "IceCave";
+            //currentMap = "IceCave";
             //gameObject.transform.position = new Vector3(205, -1, 0);
 
             //currentMap = "Infernum";
-           //gameObject.transform.position = new Vector3(470, -30, 0);
+            //gameObject.transform.position = new Vector3(470, -30, 0);
         }
         
     }
@@ -151,15 +164,17 @@ public class Status : MonoBehaviour
     {
         if (playerClass == "Rogue" || playerClass == "Knight")
         {
-            damage = 5;
             if(playerClass=="Rogue")
             {
+                damage = 5;
                 skillDamage = 5;
                 skillCD = 3;
             }
             if(playerClass=="Knight")
             {
-                //knight info
+                damage = 10;
+                skillDamage = 40;
+                skillCD = 5;
             }
         }
         else if (playerClass == "Archer" || playerClass == "Wizard")
@@ -221,15 +236,20 @@ public class Status : MonoBehaviour
     void TakePot()
     {
         potCount++;
+        sourceAudio.PlayOneShot(pot);
     }
 
     void HealthControl()
     {
         if(health<=0)
         {
+            if(dead==false)
+            {
+                dead=true;
+                sourceAudio.PlayOneShot(dieSound);
+            }
             animator.SetFloat("die",10.0f);
             health = 0;
-            sourceAudio.PlayOneShot(dieSound);
             GameOverCanvas.SetActive(true);
         }
         else if(health>=maxHealth)
@@ -313,11 +333,13 @@ public class Status : MonoBehaviour
         if(collision.gameObject.tag=="Ice")
         {
             health -= 1;
+            sourceAudio.PlayOneShot(iceHit);
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "IceGround")
         {
             health = 0;
+            sourceAudio.PlayOneShot(iceHit);
         }
         if(collision.gameObject.tag=="IceSlime")
         {
@@ -384,38 +406,46 @@ public class Status : MonoBehaviour
         }
         if(collision.gameObject.tag=="Lava")
         {
+            sourceAudio.PlayOneShot(lava);
             health = 0;
         }
         if(collision.gameObject.tag=="Fireball")
         {
+            sourceAudio.PlayOneShot(fireBall);
             health -= 2;
         }
         if(collision.gameObject.tag=="Saw")
         {
+            sourceAudio.PlayOneShot(saw);
             health = 0;
         }
         if(collision.gameObject.tag=="Laser")
         {
+            sourceAudio.PlayOneShot(laserSound);
             health -= 2;
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "EnemyFire")
         {
+            sourceAudio.PlayOneShot(enemyFire);
             health -= 1;
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "SoulShot")
         {
+            sourceAudio.PlayOneShot(soulShot);
             health -= 1;
             Destroy(collision.gameObject);
         }
         if(collision.gameObject.tag=="Boss1Laser")
         {
+            sourceAudio.PlayOneShot(boss1Lazer);
             health -= 1;
             Destroy(collision.gameObject);
         }
         if(collision.gameObject.tag=="Boss2Trap")
         {
+            sourceAudio.PlayOneShot(iceHit);
             health -= 2;
         }
     }

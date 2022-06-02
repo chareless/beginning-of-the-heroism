@@ -8,6 +8,7 @@ public class Platforms : MonoBehaviour
     public float timer;
     public float mainTimer;
     public int moveType;
+    public bool first;
     void Start()
     {
         timer = mainTimer;
@@ -15,26 +16,35 @@ public class Platforms : MonoBehaviour
 
     void Update()
     {
-        timer -= Time.deltaTime;
-        if(moveType==1)
+        if(first)
         {
-            gameObject.transform.position -= new Vector3(0, speed*Time.deltaTime, 0);
-            if (timer <= 0)
+            timer -= Time.deltaTime;
+            if (moveType == 1)
             {
-                speed *= -1;
-                timer = mainTimer;
+                gameObject.transform.position -= new Vector3(0, speed * Time.deltaTime, 0);
+                if (timer <= 0)
+                {
+                    speed *= -1;
+                    timer = mainTimer;
+                }
+            }
+            else if (moveType == 2)
+            {
+                gameObject.transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
+                if (timer <= 0)
+                {
+                    speed *= -1;
+                    timer = mainTimer;
+                }
             }
         }
-        else if(moveType==2)
-        {
-            gameObject.transform.position += new Vector3( speed * Time.deltaTime, 0,0);
-            if (timer <= 0)
-            {
-                speed *= -1;
-                timer = mainTimer;
-            }
-        }
-       
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag=="Player")
+        {
+            first = true;
+        }
     }
 }

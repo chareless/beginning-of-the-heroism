@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour
 }
         else if(gameObject.tag=="ForestBoss")
         {
-            health = 100;
+            health = 150;
             attackSayac = 3f;
             beklemeSayac = 1f;
         }
@@ -160,13 +160,13 @@ public class Enemy : MonoBehaviour
         }
         else if(gameObject.tag=="IceBoss")
         {
-            health = 100;
+            health = 150;
             attackSayac = 3f;
             beklemeSayac = 1f;
         }
         else if(gameObject.tag=="FireBoss")
         {
-            health = 100;
+            health = 150;
             attackSayac = 3f;
             beklemeSayac=1f;
         }
@@ -471,7 +471,7 @@ public class Enemy : MonoBehaviour
                             {
                                 trapObj.SetActive(false);
                                 bossAttackDelay = 0.5f;
-                                animator.SetFloat("attackDeger", 0.0f);
+                                animator.SetFloat("attackDegerUzak", 0.0f);
                                 animator.SetFloat("state", 10.0f);
                                 attackSayac = 3f;
                                 beklemeSayac = 1f;
