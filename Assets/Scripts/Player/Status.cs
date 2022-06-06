@@ -157,7 +157,7 @@ public class Status : MonoBehaviour
             //currentMap = "Infernum";
             //gameObject.transform.position = new Vector3(470, -30, 0);
         }
-        
+
     }
 
     void playerStats()
@@ -430,6 +430,11 @@ public class Status : MonoBehaviour
             sourceAudio.PlayOneShot(enemyFire);
             health -= 1;
             Destroy(collision.gameObject);
+        }
+        if(collision.gameObject.tag=="FireSlime")
+        {
+            sourceAudio.PlayOneShot(enemyFire);
+            health -= 1;
         }
         if (collision.gameObject.tag == "SoulShot")
         {

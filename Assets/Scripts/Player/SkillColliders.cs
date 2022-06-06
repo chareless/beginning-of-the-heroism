@@ -12,5 +12,9 @@ public class SkillColliders : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
+        if(collision.gameObject.tag=="ForestBoss" || collision.gameObject.tag=="IceBoss" || collision.gameObject.tag=="FireBoss")
+        {
+            Destroy(gameObject);
+        }
     }
 }
