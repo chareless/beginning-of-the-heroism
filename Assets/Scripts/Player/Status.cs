@@ -78,6 +78,7 @@ public class Status : MonoBehaviour
         CheckMap();
         SaveData.saveData();
         sourceAudio = gameObject.GetComponent<AudioSource>();
+        Application.targetFrameRate = 60;
     }
 
     void SpawnPlayer()
@@ -162,20 +163,17 @@ public class Status : MonoBehaviour
 
     void playerStats()
     {
-        if (playerClass == "Rogue" || playerClass == "Knight")
+        if(playerClass=="Rogue")
         {
-            if(playerClass=="Rogue")
-            {
-                damage = 5;
-                skillDamage = 5;
-                skillCD = 3;
-            }
-            if(playerClass=="Knight")
-            {
-                damage = 10;
-                skillDamage = 40;
-                skillCD = 5;
-            }
+            damage = 5;
+            skillDamage = 5;
+            skillCD = 3;
+        }
+        else if(playerClass=="Knight")
+        {
+            damage = 10;
+            skillDamage = 40;
+            skillCD = 5;
         }
         else if (playerClass == "Archer" || playerClass == "Wizard")
         {
@@ -183,7 +181,6 @@ public class Status : MonoBehaviour
             skillDamage = 40;
             skillCD = 25;
         }
-
         attackSpeed = 1.5f;
         skillTimer = 0;
     }
@@ -257,7 +254,6 @@ public class Status : MonoBehaviour
             health=maxHealth;
         }
 
-
         for(int i=0;i<maxHealth;i++)
         {
             if(i<health)
@@ -268,9 +264,7 @@ public class Status : MonoBehaviour
             {
                 healthBars[i].SetActive(false);
             }
-            
         }
-
     }
 
     public void SkillCDCount()
@@ -319,7 +313,6 @@ public class Status : MonoBehaviour
             jumpable = true;
             transform.parent = collision.transform;
         }
-       
         if (collision.gameObject.tag=="Poison")
         {
             sourceAudio.PlayOneShot(poison);
@@ -346,7 +339,6 @@ public class Status : MonoBehaviour
             sourceAudio.PlayOneShot(iceHit);
             health -= 1;
         }
-
         if (collision.gameObject.tag=="EnemyKnife")
         {
             sourceAudio.PlayOneShot(knifeHit);
@@ -413,6 +405,7 @@ public class Status : MonoBehaviour
         {
             sourceAudio.PlayOneShot(fireBall);
             health -= 2;
+            Destroy(collision.gameObject);
         }
         if(collision.gameObject.tag=="Saw")
         {
@@ -422,7 +415,7 @@ public class Status : MonoBehaviour
         if(collision.gameObject.tag=="Laser")
         {
             sourceAudio.PlayOneShot(laserSound);
-            health -= 2;
+            health -= 1;
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "EnemyFire")
@@ -454,5 +447,4 @@ public class Status : MonoBehaviour
             health -= 2;
         }
     }
-
 }

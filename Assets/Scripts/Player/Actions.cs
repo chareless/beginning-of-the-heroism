@@ -43,12 +43,8 @@ public class Actions : MonoBehaviour
     public AudioClip walkSound;
     AudioSource sourceAudio;
 
-
-
-    
     void Start()
     {
-        Application.targetFrameRate = StartMenu.maxFPS;
         rigidbody = GetComponent<Rigidbody2D>();
         sourceAudio = gameObject.GetComponent<AudioSource>();
     }

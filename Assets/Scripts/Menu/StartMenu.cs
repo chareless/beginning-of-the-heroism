@@ -24,7 +24,6 @@ public class StartMenu : MonoBehaviour
     public AudioSource ClickSound;
     public AudioClip nextClick;
     public AudioClip backClick;
-    public static int maxFPS = 60;
     public static float volumeValue;
     public static bool isContinue;
     public AudioSource anaMenu;
@@ -34,7 +33,7 @@ public class StartMenu : MonoBehaviour
         LoadValues();
         ThisGameEndControl();
         gameVersion.text = Application.version;
-        Application.targetFrameRate = maxFPS;
+        Application.targetFrameRate = 60;
     }
 
     public void PlayNextClick()
@@ -132,7 +131,6 @@ public class StartMenu : MonoBehaviour
     {
         volumeValue = volumeSlider.value;
         PlayerPrefs.SetFloat("VolumeValue", volumeValue);
-        PlayerPrefs.SetInt("MaxFPS", maxFPS);
         PlayerPrefs.Save();
         LoadValues();
         OptionsCanvas.SetActive(false);
