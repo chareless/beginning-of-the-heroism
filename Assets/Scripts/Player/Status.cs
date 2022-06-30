@@ -38,8 +38,6 @@ public class Status : MonoBehaviour
     public static float attackSpeed;
     public static bool jumpable;
     public static bool skillUsed;
-    public static bool dead;
-    public AudioClip dieSound;
 
     public AudioClip knifeHit;
     public AudioClip spearHit;
@@ -49,9 +47,7 @@ public class Status : MonoBehaviour
     public AudioClip rockHit;
     public AudioClip iceHit;
     public AudioClip thornHit;
-    public AudioClip gate1;
-    public AudioClip gate2;
-    public AudioClip gate3;
+    public AudioClip gate;
 
     public AudioClip poison;
     public AudioClip pot;
@@ -240,11 +236,6 @@ public class Status : MonoBehaviour
     {
         if(health<=0)
         {
-            if(dead==false)
-            {
-                dead=true;
-                sourceAudio.PlayOneShot(dieSound);
-            }
             animator.SetFloat("die",10.0f);
             health = 0;
             GameOverCanvas.SetActive(true);
@@ -376,21 +367,21 @@ public class Status : MonoBehaviour
         }
         if (collision.gameObject.tag == "Gate1")
         {
-            sourceAudio.PlayOneShot(gate1);
+            sourceAudio.PlayOneShot(gate);
             currentMap = "IceCave";
             SaveData.saveData();
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "Gate2")
         {
-            sourceAudio.PlayOneShot(gate2);
+            sourceAudio.PlayOneShot(gate);
             currentMap = "Infernum";
             SaveData.saveData();
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "Gate3")
         {
-            sourceAudio.PlayOneShot(gate3);
+            sourceAudio.PlayOneShot(gate);
             PlayerPrefs.SetInt("GameEnd", 1);
             PlayerPrefs.SetInt("ThisGameEnd", 1);
             PlayerPrefs.Save();

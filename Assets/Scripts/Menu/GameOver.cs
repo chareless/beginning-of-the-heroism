@@ -27,7 +27,7 @@ public class GameOver : MonoBehaviour
             gameEndText.color= Color.yellow;
         }
     }
-    
+
     void RandomMessage()
     {
         int random = Random.Range(0,6);

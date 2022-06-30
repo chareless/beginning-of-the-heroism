@@ -117,7 +117,7 @@ public class StartMenu : MonoBehaviour
     {
         StartMenuCanvas.SetActive(false);
         CreditsCanvas.SetActive(true);
-        EndText.transform.position = new Vector3(0, -10f, 0);
+        EndText.transform.position = new Vector3(0, -20f, 0);
         PlayNextClick();
     }
     public void OptionsButton()
@@ -146,7 +146,10 @@ public class StartMenu : MonoBehaviour
         SelectCharacterCanvas.SetActive(false);
         GameEndCanvas.SetActive(false);
         PlayBackClick();
-        anaMenu.Play();
+        if(anaMenu.isPlaying==false)
+        {
+            anaMenu.Play();
+        }
     }
 
     public void QuitButton()
