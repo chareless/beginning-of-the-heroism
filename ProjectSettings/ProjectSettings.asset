@@ -159,8 +159,8 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 6
-  AndroidMinSdkVersion: 22
+  AndroidBundleVersionCode: 9
+  AndroidMinSdkVersion: 26
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -247,7 +247,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/deniz/Desktop/MyApps/UnityGames/BOTH Publish/user.keystore
+  AndroidKeystoreName: C:/Users/deniz/Desktop/MyApps/UnityGames/BOTH/BOTH Publish/user.keystore
   AndroidKeyaliasName: both
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
