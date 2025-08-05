@@ -57,7 +57,7 @@ public class Actions : MonoBehaviour
     {
         if (Input.GetKeyDown("w"))
         {
-            if (Mathf.Approximately(rigidbody.velocity.y, 0))
+            if (Mathf.Approximately(rigidbody.linearVelocity.y, 0))
             {
                 jump = 31;
                 rigidbody.AddForce(transform.up * jump, ForceMode2D.Impulse);
@@ -113,7 +113,7 @@ public class Actions : MonoBehaviour
     }
     public void RightMovement()
     {
-        if (Mathf.Approximately(rigidbody.velocity.y, 0))
+        if (Mathf.Approximately(rigidbody.linearVelocity.y, 0))
         {
             sourceAudio.Play();
         }
@@ -147,7 +147,7 @@ public class Actions : MonoBehaviour
 
     public void LeftMovement()
     {
-        if (Mathf.Approximately(rigidbody.velocity.y, 0))
+        if (Mathf.Approximately(rigidbody.linearVelocity.y, 0))
         {
             sourceAudio.Play();
         }
@@ -190,7 +190,7 @@ public class Actions : MonoBehaviour
 
     public void Jump()
     {
-        if (Mathf.Approximately(rigidbody.velocity.y, 0) || Status.jumpable==true)
+        if (Mathf.Approximately(rigidbody.linearVelocity.y, 0) || Status.jumpable==true)
         {
             sourceAudio.PlayOneShot(jumpSound);
             jump = 31f;
